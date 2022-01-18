@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
-    root "static_pages#home"
     devise_for :users
+    root "static_pages#home"
     as :user do
       get "signin" => "devise/sessions#new"
       post "signin" => "devise/sessions#create"
