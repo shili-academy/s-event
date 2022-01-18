@@ -3,8 +3,10 @@
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
+    "@rails/activestorage": "^7.0.1",
     "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "5.4.3",
+    "expose-loader": "^3.1.0",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
