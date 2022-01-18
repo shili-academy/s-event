@@ -11,6 +11,7 @@
     "expose-loader": "^3.1.0",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
+    "rails-ujs": "^5.2.6",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"

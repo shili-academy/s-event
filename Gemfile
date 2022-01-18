@@ -5,6 +5,7 @@ ruby "2.7.4"
 
 gem "rails", "~> 6.1.4", ">= 6.1.4.4"
 gem "rails-i18n"
+gem "faker", "2.1.2"
 gem "figaro"
 gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.0"
@@ -13,6 +14,7 @@ gem "webpacker", "~> 5.0"
 gem "turbolinks", "~> 5"
 gem "bootsnap", ">= 1.4.4", require: false
 gem "devise"
+gem "jquery-rails"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
