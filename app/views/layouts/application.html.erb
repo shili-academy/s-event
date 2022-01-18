@@ -9,12 +9,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
   </head>
   <body>
-    <%= yield %>
-    <div class="container-fluid">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+
+  <%= yield %>
+    <div id="flash">
+      <%= render "layouts/flash" %>
     </div>
   </body>
 </html>
