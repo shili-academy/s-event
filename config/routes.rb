@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       delete "signout" => "devise/sessions#destroy"
     end
 
-    resources :events
+    resources :events do
+      resources :tasks
+    end
+
   end
 end

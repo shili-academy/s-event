@@ -1,0 +1,28 @@
+    <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md
+    hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 my-5 py-12">
+    <%= form_with(model: event) do |form| %>
+
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% event.errors.each do |error| %>
+          <li><%= event.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+
+    <%= form.text_field :name %>
+    <%= form.text_field :description %>
+    <%= form.datetime_field :happen_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>
