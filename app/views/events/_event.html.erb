@@ -1,20 +1,40 @@
 <%= turbo_frame_tag dom_id(event) do %>
-  <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md
-    hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 my-5 py-12">
+  <div class="block p-6 pb-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md
+    hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 my-5">
     <%= link_to event.name, event_path(event),data: { turbo: false }, class:"mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" %>
-
     <p class="font-normal text-gray-700 dark:text-gray-400">
       <%=h truncate(event.description, length: 100) %>
     </p>
-    <span class="text-sm text-gray-500 dark:text-gray-400">
-      <%= event.happen_at.strftime "%H:%M %d-%m-%Y" %>
-    <span>
-     <span class="text-sm text-gray-500 dark:text-gray-400"> progress
-      <%= event.tasks.sum(:progress)/ event.tasks.count || 0 %>
-    <span>
-
+    <p class="font-medium">
+      Happen at:
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        <%= event.happen_at.strftime "%H:%M %d-%m-%Y" %>
+      <span>
+    </p>
+    <p class="font-medium">
+      Location:
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        <%= event.location %>
+      <span>
+    </p>
+       <p class="font-medium">
+      Event type:
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        <%= event.event_type.name %>
+      <span>
+    </p>
+    <div class="flex justify-between mb-1">
+      <span class="text-base font-medium text-blue-700 dark:text-white">Progress</span>
+      <span class="text-sm font-medium text-blue-700 dark:text-white"><%= event.tasks.any? ? event.tasks.sum(:progress) / event.tasks.count : 0 %>%</span>
+    </div>
+    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+      <div class="bg-blue-600 h-2.5 rounded-full" style="width: <%= event.tasks.any? ? event.tasks.sum(:progress) / event.tasks.count : 0 %>%"></div>
+    </div>
     <br>
-    <%= button_to :xoa, event, method: :delete %>
-    <%= link_to :edit, edit_event_path(event) %>
+    <%= link_to :Details, event_path(event),data: { turbo: false }, class: "text-green-600/100 font-bold	"  %>
+    &emsp;
+    <%= link_to :Edit, edit_event_path(event), class: "text-blue-600/100 font-bold	" %>
+    &emsp;
+    <%= link_to :Delete, event_path(event), method: :delete, class: "text-red-600/100 font-bold	" %>
   </div>
 <% end %>

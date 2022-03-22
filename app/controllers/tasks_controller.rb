@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  before_action :load_task, only: [:show, :edit, :update, :destroy]
   before_action :load_event, only: [:create, :edit]
+  before_action :load_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
   def index
@@ -46,16 +46,18 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def load_task
-      @task = Task.find(params[:id])
-    end
 
-    def load_event
-      @event = Event.find_by id: params[:event_id]
-    end
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.require(:task).permit :name, :event_id, :description, :start_time, :end_time, :estimated_costs, :actual_costs, :location, :progress
-    end
+  def load_event
+    @event = current_user.events.find_by id: params[:event_id]
+  end
+
+  def load_task
+    @task = @event.tasks.find(params[:id])
+  end
+
+
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.require(:task).permit :name, :event_id, :description, :start_time, :end_time, :estimated_costs, :actual_costs, :location, :progress
+  end
 end

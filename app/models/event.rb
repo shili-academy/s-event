@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :user
+  belongs_to :event_type
   has_many :tasks, dependent: :destroy
 
   after_create_commit{broadcast_prepend_to :events}
