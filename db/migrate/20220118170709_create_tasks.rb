@@ -9,6 +9,7 @@ class CreateTasks < ActiveRecord::Migration[6.1]
       t.decimal :estimated_costs
       t.decimal :actual_costs
       t.string :location
+      t.float :progress, default: 0
 
       t.timestamps
     end

@@ -9,6 +9,10 @@
     <span class="text-sm text-gray-500 dark:text-gray-400">
       <%= event.happen_at.strftime "%H:%M %d-%m-%Y" %>
     <span>
+     <span class="text-sm text-gray-500 dark:text-gray-400"> progress
+      <%= event.tasks.sum(:progress)/ event.tasks.count || 0 %>
+    <span>
+
     <br>
     <%= button_to :xoa, event, method: :delete %>
     <%= link_to :edit, edit_event_path(event) %>

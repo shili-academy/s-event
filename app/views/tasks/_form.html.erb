@@ -1,0 +1,36 @@
+    <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md
+    hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 my-5 py-12">
+    <%= form_for [@event ,task]  do |form| %>
+
+
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+
+    <%= form.label :start_time %>
+    <%= form.datetime_field :start_time %>
+    <%= form.label :end_time %>
+    <%= form.datetime_field :end_time %>
+    <%= form.label :estimated_costs %>
+    <%= form.text_field :estimated_costs %>
+    <%= form.label :actual_costs %>
+    <%= form.text_field :actual_costs %>
+    <%= form.label :location %>
+  <%= form.text_field :location %>
+  <%= form.label :progress %>
+  <%= form.range_field :progress, value: task.progress,  in: 0..100, step: 0.1, oninput: "this.nextElementSibling.value = this.value" %>
+  <output><%= task.progress %></output>
+
+
+  <%= form.hidden_field :event_id, {value: @event.id} %>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>
