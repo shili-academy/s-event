@@ -13,7 +13,7 @@ class EventsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @event.update(languages_params)
+      if @event.update(event_params)
         format.html{redirect_to event_url(@event), notice: "Successfully"}
         format.json{render :show, status: :ok, location: @event}
       else
@@ -24,7 +24,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new languages_params
+    @event = Event.new event_params
     @event.user = current_user
     if @event.save
       flash.now[:success] = "Thanh cong"
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
 
   private
 
-  def languages_params
+  def event_params
     params.require(:event).permit :name, :description, :happen_at
   end
 
