@@ -12,13 +12,22 @@
 
 ActiveRecord::Schema.define(version: 2022_01_18_170709) do
 
+  create_table "event_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "event_type_id", null: false
     t.string "name"
     t.string "description"
     t.datetime "happen_at"
+    t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_type_id"], name: "index_events_on_event_type_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -30,7 +39,6 @@ ActiveRecord::Schema.define(version: 2022_01_18_170709) do
     t.datetime "end_time"
     t.decimal "estimated_costs"
     t.decimal "actual_costs"
-    t.string "location"
     t.float "progress", default: 0.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -60,6 +68,7 @@ ActiveRecord::Schema.define(version: 2022_01_18_170709) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "events", "event_types"
   add_foreign_key "events", "users"
   add_foreign_key "tasks", "events"
 end
