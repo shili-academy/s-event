@@ -22,4 +22,8 @@ module ApplicationHelper
       :gray
     end
   end
+
+  def parse_time time
+   time.strftime("%Y-%m-%dT%H:%M") if time
+  end
 end
