@@ -1,7 +1,2 @@
-<%= turbo_frame_tag dom_id(@task) do %>
-    <%= render 'form', task: @task %>
-  <%= link_to :xoa, event_task_path(@task.event_id, @task),  method: :delete  %>
-
-
-  </div>
-<% end %>
+<%= render 'form', task: @task %>
+<%= link_to :Delete, event_task_path(@task.event_id, @task), method: :delete, class: "text-red-600/100 font-bold" %>

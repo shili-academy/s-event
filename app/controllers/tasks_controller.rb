@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :load_event, only: [:create, :edit]
+  before_action :load_event, only: [:create, :edit, :update, :destroy]
   before_action :load_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
@@ -34,9 +34,9 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      render json: "OK", status: :ok
+      redirect_to event_path(@event)
     else
-      render json: @event.errors, status: :unprocessable_entity
+      render :edit
     end
   end
 

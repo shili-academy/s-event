@@ -4,8 +4,42 @@
     <%= link_to task.name, event_tasks_path(task),data: { turbo: false }, class:"mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" %>
   <br>
   <%= task.progress %> %
+      <p class="font-medium">
+      description:
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        <%= task.description %>
+      <span>
+    </p>
+        <p class="font-medium">
+      start_time:
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        <%= parse_time task.start_time %>
+      <span>
+    </p>
+        <p class="font-medium">
+      end_time:
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        <%= parse_time task.end_time %>
+      <span>
+    </p>
+            <p class="font-medium">
+      estimated_costs:
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        <%= number_to_currency(task.estimated_costs, locale: :vi)  %>
+      <span>
+    </p>
+            <p class="font-medium">
+      actual_costs:
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+                <%= number_to_currency(task.actual_costs, locale: :vi)  %>
+
+      <span>
+    </p>
+
   <br>
-    <%= link_to :xoa, event_task_path(task.event_id, task),  method: :delete  %>
-    <%= link_to :edit, edit_event_task_path(task.event_id,task) %>
+
+    <%= link_to :Edit, edit_event_task_path(task.event_id,task),data: { turbo: false }, class: "text-blue-600/100 font-bold" %>
+    &emsp;
+    <%= link_to :Delete, event_task_path(task.event_id, task), method: :delete, class: "text-red-600/100 font-bold" %>
   </div>
 <% end %>
