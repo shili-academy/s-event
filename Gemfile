@@ -22,6 +22,9 @@ gem "sqlite3", "~> 1.4"
 gem "tailwindcss-rails", "~> 2.0"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 5.0"
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+gem 'sprockets-rails', '2.3.3'
+gem "rails_admin"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

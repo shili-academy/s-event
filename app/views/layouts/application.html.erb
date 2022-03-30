@@ -21,11 +21,15 @@
       <%= render "layouts/header" %>
       <main>
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <%= yield %>
+    <main class="container mx-auto mt-28 px-5 flex">
+            <%= yield %>
+    </main>
         </div>
       </main>
     <% else %>
-      <%= yield %>
+    <main class="container mx-auto mt-28 px-5 flex">
+        <%= yield %>
+    </main>
     <% end %>
   </body>
 </html>

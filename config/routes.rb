@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admins
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   scope "(:locale)", locale: /en|vi/ do
     devise_for :users
     root "static_pages#home"
