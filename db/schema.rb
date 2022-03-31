@@ -52,7 +52,13 @@ ActiveRecord::Schema.define(version: 2022_03_30_071822) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.date "date_of_birth"
+    t.string "address"
+    t.boolean "gender"
+    t.integer "role", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false

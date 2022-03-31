@@ -8,6 +8,7 @@
 
 <div class="px-4 py-6 sm:px-0">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <%= fa_icon "camera-retro" %>
     <%= turbo_stream_from :events %>
     <%= turbo_frame_tag :events,
       class: "mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6 items-center" do %>

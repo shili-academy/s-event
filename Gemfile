@@ -6,13 +6,18 @@ git_source(:github){|repo| "https://github.com/#{repo}.git"}
 ruby "2.7.4"
 
 gem "bootsnap", ">= 1.4.4", require: false
+gem 'bootstrap-kaminari-views'
 gem "chartkick"
+gem "cancancan"
+gem "config"
 gem "devise"
 gem "faker", "2.1.2"
 gem "figaro"
+gem "font-awesome-rails"
 gem "groupdate"
 gem "hotwire-rails"
 gem "jquery-rails"
+gem 'kaminari'  
 gem "puma", "~> 5.0"
 gem "rails", "~> 6.1.4", ">= 6.1.4.4"
 gem "rails-i18n"
@@ -25,6 +30,7 @@ gem "webpacker", "~> 5.0"
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'sprockets-rails', '2.3.3'
 gem "rails_admin"
+gem "ransack"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
