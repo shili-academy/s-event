@@ -1,0 +1,6 @@
+validation:
+  max_length_50: 50
+  max_length_255: 255
+  min_length_6: 6
+format_time: "%Y-%m-%dT%H:%M"
+format_time_view: "%H:%M %d-%m-%Y"

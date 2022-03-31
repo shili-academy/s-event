@@ -1,4 +1,4 @@
-User.create!(name: "Trần",
+User.create!(first_name: "Trần",
   email: "vansang10a6txqt@gmail.com",
   password: "vansang",
   password_confirmation: "vansang",
