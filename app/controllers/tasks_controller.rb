@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :load_event, only: [:create, :edit, :update, :destroy]
+  before_action :load_event, only: [:create, :show, :edit, :update, :destroy]
   before_action :load_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
@@ -52,7 +52,7 @@ class TasksController < ApplicationController
   end
 
   def load_task
-    @task = @event.tasks.find(params[:id])
+    @task = @event.tasks.find_by id: params[:id]
   end
 
 
