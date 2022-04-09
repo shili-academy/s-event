@@ -3254,6 +3254,11 @@ fsevents@~2.3.2:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
 
+fullcalendar@^5.11.0:
+  version "5.11.0"
+  resolved "https://registry.yarnpkg.com/fullcalendar/-/fullcalendar-5.11.0.tgz#ad22a10fbf821940a1aa10d8670700bf0e1548d8"
+  integrity sha512-R3yQMKJtP6jWZ3o9fNB0WUOl6Oi+vus3ciLtt3eva7ISutkMm6nE4lA+xhfTS3OIevxVQOv0O646R6G8o7sMXA==
+
 function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz"

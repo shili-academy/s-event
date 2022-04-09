@@ -8,7 +8,7 @@ Topic.create!(name: "Wedding")
 Topic.create!(name: "Wedding 12")
 Event.create!(
   user_id: User.first.id,
-  name: Faker::Appliance.brand,
+  name: "Root",
   description: Faker::Restaurant.description,
   happen_at: Time.now
 )
