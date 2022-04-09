@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :event
-
+  has_many :topic_tasks, dependent: :destroy
 
   after_create_commit{broadcast_prepend_to :tasks}
   after_update_commit{broadcast_replace_to :tasks}
