@@ -10,24 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_30_071822) do
-
-  create_table "event_types", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2022_04_04_073429) do
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "event_type_id", null: false
+    t.integer "topic_id"
     t.string "name"
     t.string "description"
     t.datetime "happen_at"
     t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_type_id"], name: "index_events_on_event_type_id"
+    t.index ["topic_id"], name: "index_events_on_topic_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -45,8 +39,18 @@ ActiveRecord::Schema.define(version: 2022_03_30_071822) do
     t.index ["event_id"], name: "index_tasks_on_event_id"
   end
 
+  create_table "topic_tasks", force: :cascade do |t|
+    t.integer "topic_id", null: false
+    t.integer "task_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_topic_tasks_on_task_id"
+    t.index ["topic_id"], name: "index_topic_tasks_on_topic_id"
+  end
+
   create_table "topics", force: :cascade do |t|
     t.string "name"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -80,7 +84,9 @@ ActiveRecord::Schema.define(version: 2022_03_30_071822) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "events", "event_types"
+  add_foreign_key "events", "topics"
   add_foreign_key "events", "users"
   add_foreign_key "tasks", "events"
+  add_foreign_key "topic_tasks", "tasks"
+  add_foreign_key "topic_tasks", "topics"
 end

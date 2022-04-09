@@ -59,15 +59,16 @@ RailsAdmin.config do |config|
     end
 
     config.model "Event" do
-      configure :user do
-        pretty_value do
-          util = bindings[:object]
-            %{<a href="#{ bindings[:view].rails_admin.edit_path(model_name: 'user', id: util.user.id)}">#{util.user.last_name}</a>}.html_safe
-        end
-        children_fields [:name, :phone, :logo] # will be used for searching/filtering, first field will be used for sorting
-        read_only true # won't be editable in forms (alternatively, hide it in edit section)
-      end
       list do
+        configure :user do
+          pretty_value do
+            util = bindings[:object]
+              %{<a href="#{ bindings[:view].rails_admin.edit_path(model_name: 'user', id: util.user.id)}">#{util.user.last_name}</a>}.html_safe
+          end
+          children_fields [:name, :phone, :logo] # will be used for searching/filtering, first field will be used for sorting
+          read_only true # won't be editable in forms (alternatively, hide it in edit section)
+        end
+        
         sort_by :name
       end
     end
