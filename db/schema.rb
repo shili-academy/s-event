@@ -27,16 +27,18 @@ ActiveRecord::Schema.define(version: 2022_04_04_073429) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer "event_id", null: false
+    t.integer "parent_id"
     t.string "name"
     t.string "description"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.decimal "estimated_costs"
-    t.decimal "actual_costs"
+    t.decimal "estimated_costs", default: "0.0"
+    t.decimal "actual_costs", default: "0.0"
     t.float "progress", default: 0.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_tasks_on_event_id"
+    t.index ["parent_id"], name: "index_tasks_on_parent_id"
   end
 
   create_table "topic_tasks", force: :cascade do |t|
@@ -87,6 +89,7 @@ ActiveRecord::Schema.define(version: 2022_04_04_073429) do
   add_foreign_key "events", "topics"
   add_foreign_key "events", "users"
   add_foreign_key "tasks", "events"
+  add_foreign_key "tasks", "tasks", column: "parent_id"
   add_foreign_key "topic_tasks", "tasks"
   add_foreign_key "topic_tasks", "topics"
 end
