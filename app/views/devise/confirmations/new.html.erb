@@ -1,33 +1,18 @@
-<div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-md w-full space-y-8">
-    <div>
-      <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
-      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-        Resend confirmation instructions
-      </h2>
+<div class="shadow-lg p-3 mb-5 bg-body rounded m-5">
+  <h2 class="m-3 text-center">
+    Resend confirmation instructions
+  </h2>
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, class: "mt-8 space-y-6") do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="mb-3">
+      <%= f.label :email, class: "form-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",
+        class: "form-control", placeholder: "Email address",
+        value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
     </div>
-    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, class: "mt-8 space-y-6") do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-      <div class="rounded-md shadow-sm -space-y-px my-3">
-        <div>
-          <%= f.label :email, class: "sr-only" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email",
-            class: "appearance-none rounded-none relative block w-full px-3 py-2 border
-              border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none
-              focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm",
-              placeholder: "Email address",
-              value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-        </div>
-      </div>
-      <div class="flex items-center justify-between my-3">
-        <div class="text-sm">
-          <%= render "devise/shared/links" %>
-        </div>
-      </div>
-      <%= f.submit "Resend confirmation instructions", class: "group relative w-full flex justify-center py-2 px-4 border
-        border-transparent text-sm font-medium rounded-md text-white bg-indigo-600
-        hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2
-        focus:ring-indigo-500 my-3" %>
-    <% end %>
-  </div>
+    <%= f.submit "Resend confirmation instructions", class: "btn btn-primary mb-4" %>
+    <div>
+      <%= render "devise/shared/links" %>
+    </div> 
+  <% end %>
 </div>

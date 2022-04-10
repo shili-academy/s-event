@@ -1,17 +1,17 @@
 <% provide :title, :home %>
 <% provide :header_page, "Your event" %>
 <% content_for :header_content do %>
-  <button data-modal-toggle="defaultModal" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+  <button data-modal-toggle="exampleModal" class="btn btn-primary rounded">
     <span>Create event</span>
   </button>
 <% end %>
 
-<div class="px-4 py-6 sm:px-0">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="">
+  <div class="">
     <%= fa_icon "camera-retro" %>
     <%= turbo_stream_from :events %>
     <%= turbo_frame_tag :events,
-      class: "mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6 items-center" do %>
+      class: "row row-cols-1 row-cols-md-2 g-4" do %>
       <%= render @events %>
     <% end %>
   </div>

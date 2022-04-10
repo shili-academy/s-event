@@ -13,7 +13,9 @@ import "@hotwired/turbo-rails"
 import 'bootstrap/dist/js/bootstrap'
 import "bootstrap/dist/css/bootstrap";
 require('jquery')
+//= require jquery
 //= require jquery3
+//= require jquery_ujs
 //= require popper
 //= require bootstrap
 
