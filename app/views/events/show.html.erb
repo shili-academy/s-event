@@ -5,6 +5,9 @@
   </button>
   <%= link_to "Back", :back, class:"bg-red-400 hover:bg-ed-400 text-white font-bold py-2 px-4 border border-red-400 rounded" %>
 <% end %>
+
+<div id="calendar"></div>
+
 <%= turbo_stream_from :tasks %>
 <%= turbo_frame_tag :tasks,
   class: "mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6 items-center" do %>
@@ -17,3 +20,7 @@
 
   <%= render 'tasks/form', task: Task.new %>
 <% end %>
+<script>
+  let room_id = "<%= @event.id  %>"
+</script>
+<%= javascript_pack_tag "calendar_room.js" %>
