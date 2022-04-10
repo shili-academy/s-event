@@ -10,8 +10,12 @@ import "channels"
 import "chartkick/chart.js"
 import "chartkick/highcharts"
 import "@hotwired/turbo-rails"
+import 'bootstrap/dist/js/bootstrap'
+import "bootstrap/dist/css/bootstrap";
 require('jquery')
-//= require jquery
+//= require jquery3
+//= require popper
+//= require bootstrap
 
 Rails.start()
 Turbolinks.start()

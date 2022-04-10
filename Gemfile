@@ -7,6 +7,7 @@ ruby "2.7.4"
 
 gem "bootsnap", ">= 1.4.4", require: false
 gem "bootstrap-kaminari-views"
+gem 'bootstrap', '~> 5.1.3'
 gem "chartkick"
 gem "cancancan"
 gem "config"
@@ -27,13 +28,13 @@ gem "sass-rails", ">= 6"
 gem "fullcalendar-rails"
 gem "momentjs-rails"
 gem "sqlite3", "~> 1.4"
-gem "tailwindcss-rails", "~> 2.0"
+gem 'popper_js', '~> 2.9.3'
 gem "turbolinks", "~> 5"
-gem "webpacker", "~> 5.0"
 gem "wdm", ">= 0.1.0" if Gem.win_platform?
 gem "sprockets-rails", "2.3.3"
 gem "rails_admin"
 gem "ransack"
+gem 'webpacker', '~> 5.0'
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
