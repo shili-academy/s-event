@@ -46,6 +46,6 @@
   </div>
 <%= turbo_stream_from :tasks %>
 <%= turbo_frame_tag :tasks,
-  class: "mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6 items-center" do %>
+  class: "row row-cols-1 row-cols-md-3 g-4" do %>
   <%= render @task.sub_tasks if @task %>
 <% end %>

@@ -24,6 +24,6 @@ module ApplicationHelper
   end
 
   def parse_time time
-   time.strftime("%Y-%m-%dT%H:%M") if time
+   time.strftime(Settings.format_time_view) if time
   end
 end

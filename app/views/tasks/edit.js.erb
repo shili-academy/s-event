@@ -1,0 +1,5 @@
+$('#exampleModalLabel').html('Chỉnh sửa task')
+$('#modal_body').html('<%= j render "form", task: @task %>')
+$('#modal_body').append('<%= link_to :Delete, event_task_path(@task.event_id, @task), method: :delete, class: "" %>')
+var myModal = new bootstrap.Modal($("#exampleModal"), {});
+myModal.show();

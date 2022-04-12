@@ -1,45 +1,38 @@
-<%= turbo_frame_tag dom_id(task) do %>
-  <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md
-    hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 my-5 py-12">
-    <%= link_to task.name, event_task_path(event_id: @event || 1, id: task),data: { turbo: false }, class:"mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" %>
-  <br>
-  <%= task.progress %> %
-      <p class="font-medium">
-      description:
-      <span class="text-sm text-gray-500 dark:text-gray-400">
-        <%= task.description %>
-      <span>
+<%= turbo_frame_tag dom_id(task), class: "col p-3 mb-3" do %>
+  <div class="card shadow-sm p-3 mb-3 bg-body rounded width-400">
+    <%= link_to task.name, event_task_path(event_id: @event || 1, id: task),data: { turbo: false }, 
+      class:"h3 text-decoration-none text-dark" %>
+    <div class="progress my-3">
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" 
+        style="width: <%= task.progress || 0 %>%;" 
+        aria-valuenow="<%= task.progress || 0 %>" 
+        aria-valuemin="0" aria-valuemax="100">
+        <%= task.progress || 0 %>%
+      </div>
+    </div>
+    <p>
+      <i class="fa-solid fa-circle-info"></i>
+      <%= task.description %>
     </p>
-        <p class="font-medium">
-      start_time:
-      <span class="text-sm text-gray-500 dark:text-gray-400">
-        <%= parse_time task.start_time %>
-      <span>
+    <p>
+      <i class="fa-solid fa-calendar-minus"></i>
+      <%= parse_time task.start_time %>
+      <i class="fa-solid fa-calendar-plus ms-5"></i>
+      <%= parse_time task.end_time %>
+    </p>    
+    <p>
+      <i class="fa-solid fa-comment-dollar"></i>
+      <%= number_to_currency(task.estimated_costs, locale: :vi)  %>
+      <i class="fa-solid fa-money-bills ms-5"></i>
+      <%= number_to_currency(task.actual_costs, locale: :vi)  %>
     </p>
-        <p class="font-medium">
-      end_time:
-      <span class="text-sm text-gray-500 dark:text-gray-400">
-        <%= parse_time task.end_time %>
-      <span>
-    </p>
-            <p class="font-medium">
-      estimated_costs:
-      <span class="text-sm text-gray-500 dark:text-gray-400">
-        <%= number_to_currency(task.estimated_costs, locale: :vi)  %>
-      <span>
-    </p>
-            <p class="font-medium">
-      actual_costs:
-      <span class="text-sm text-gray-500 dark:text-gray-400">
-                <%= number_to_currency(task.actual_costs, locale: :vi)  %>
-
-      <span>
-    </p>
-
-  <br>
-
-    <%= link_to :Edit, edit_event_task_path(task.event_id,task),data: { turbo: false }, class: "text-blue-600/100 font-bold" %>
-    &emsp;
-    <%= link_to :Delete, event_task_path(task.event_id, task), method: :delete, class: "text-red-600/100 font-bold" %>
+    <br>
+    <div>
+      <%= link_to :Edit, edit_event_task_path(task.event_id,task), data: { turbo: false }, remote: true,
+        class: "text-decoration-none text-primary fw-bold" %>
+      &emsp;
+      <%= link_to :Delete, event_task_path(task.event_id, task), method: :delete, 
+        class: "text-decoration-none text-danger fw-bold" %>
+    </div>
   </div>
 <% end %>

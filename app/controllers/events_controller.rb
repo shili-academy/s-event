@@ -7,6 +7,8 @@ class EventsController < ApplicationController
 
   def show
     @tasks = @event.tasks
+    gon.event_id = @event.id
+    gon.url = change_time_event_tasks_path event_id: @event.id
   end
 
   def edit; end

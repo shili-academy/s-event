@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  before_action :load_event, only: [:create, :show, :edit, :update, :destroy]
-  before_action :load_task, only: [:show, :edit, :update, :destroy]
+  before_action :load_event, only: [:create, :show, :edit, :update, :destroy, :change_time]
+  before_action :load_task, only: [:show, :edit, :update, :destroy, :change_time]
 
   # GET /tasks
   def index
@@ -43,6 +43,11 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   def destroy
     @task.destroy
+  end
+
+  def change_time
+    @task.update(start_time: params[:start_time], end_time: params[:end_time] || params[:start_time])
+    flash[:success] = "Cập nhật thành công"
   end
 
   private

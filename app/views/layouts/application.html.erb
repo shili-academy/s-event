@@ -3,12 +3,14 @@
   <head>
     <title><%= full_title yield :title %></title>
     <%= render "layouts/shim" %>
+    <%= include_gon %>
+    
   </head>
   <body>
     <% if user_signed_in? %>
       <%= render "layouts/header" %>
      <% end %>
-    <main class="container">
+    <main class="m-3 p-3">
         <%= yield %>
     </main>
     <div id="flash">
