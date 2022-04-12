@@ -2,10 +2,8 @@
   <h1>
     Event:  <%= @event.name %>
   </h1>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" 
-    data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-    Create task
-  </button> 
+  <%= link_to "Create task", new_event_task_path(@event.id), class:"btn btn-primary",
+    "data-bs-toggle": :modal, "data-bs-target": "#exampleModal", "data-bs-whatever": "@mdo", remote: true %>
   <%= link_to "Back", :back, class:"btn btn-warning" %>
 </div>
 <div class="row">
@@ -20,9 +18,12 @@
     <div id="calendar"></div>
   </div>
 </div>
+<<<<<<< HEAD
 
 <% content_for :modal_title, "Create Task" %>
 <% content_for :modal_body do %>
   <%= render 'tasks/form', task: Task.new %>
 <% end %>
+=======
+>>>>>>> 87566fa (As)
 <%= javascript_pack_tag "calendar_room.js" %> 

@@ -1,6 +1,7 @@
 <%= turbo_frame_tag dom_id(task), class: "col p-3 mb-3" do %>
   <div class="card shadow-sm p-3 mb-3 bg-body rounded width-400">
-    <%= link_to task.name, event_task_path(event_id: @event || 1, id: task),data: { turbo: false }, 
+    <%= link_to task.name, event_task_path(event_id: @event || 1, id: task), remote: true, data: { turbo: false }, 
+      "data-bs-toggle": :modal, "data-bs-target": "#exampleModal", "data-bs-whatever": "@mdo",
       class:"h3 text-decoration-none text-dark" %>
     <div class="progress my-3">
       <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" 
@@ -10,10 +11,6 @@
         <%= task.progress || 0 %>%
       </div>
     </div>
-    <p>
-      <i class="fa-solid fa-circle-info"></i>
-      <%= task.description %>
-    </p>
     <p>
       <i class="fa-solid fa-calendar-minus"></i>
       <%= parse_time task.start_time %>
