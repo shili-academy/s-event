@@ -7,6 +7,7 @@
     
   </head>
   <body>
+  <%= render "layouts/modal" %>
     <% if user_signed_in? %>
       <%= render "layouts/header" %>
      <% end %>
@@ -16,6 +17,7 @@
     <div id="flash">
       <%= render "layouts/flash" %>
     </div>
+    
   </body>
 </html>
-<%= render "layouts/modal" %>
+
