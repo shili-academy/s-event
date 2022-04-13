@@ -1,0 +1,3 @@
+<% flash.each do |message_type, message| %>
+  swal("Thông báo", "<%= message %>", "<%= message_type %>");
+<% end %>

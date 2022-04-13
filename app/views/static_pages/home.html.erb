@@ -5,16 +5,12 @@
     <span>Create event</span>
   </button>
 <% end %>
-
-<div class="">
-  <div class="">
-    <%= fa_icon "camera-retro" %>
-    <%= turbo_stream_from :events %>
-    <%= turbo_frame_tag :events,
-      class: "row row-cols-1 row-cols-md-2 g-4" do %>
-      <%= render @events %>
-    <% end %>
-  </div>
+<div>
+  <%= turbo_stream_from :events %>
+  <%= turbo_frame_tag :events,
+    class: "row row-cols-1 row-cols-md-2 g-4" do %>
+    <%= render @events %>
+  <% end %>
 </div>
 
 <% content_for :modal_title, "Create" %>
