@@ -23,7 +23,6 @@ require('jquery')
 //= require bootstrap
 //= require moment
 
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

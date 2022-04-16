@@ -27,10 +27,10 @@
         <span class="">Progress</span>
         <div class="progress" style="height: 25px;">
           <div class="progress-bar progress-bar-striped progress-bar-animated  bg-success" role="progressbar" 
-            style="width: <%= event.tasks.any? ? event.tasks.sum(:progress) / event.tasks.count : 0 %>%;" 
-            aria-valuenow="<%= event.tasks.any? ? event.tasks.sum(:progress) / event.tasks.count : 0 %>" 
+            style="width: <%= event.tasks.any? ? (event.tasks.sum(:progress) / event.tasks.count).round(3) : 0 %>%;" 
+            aria-valuenow="<%= event.tasks.any? ? (event.tasks.sum(:progress) / event.tasks.count).round(3) : 0 %>" 
             aria-valuemin="0" aria-valuemax="100">
-            <%= event.tasks.any? ? event.tasks.sum(:progress) / event.tasks.count : 0 %>%
+            <%= event.tasks.any? ? (event.tasks.sum(:progress) / event.tasks.count).round(3)  : 0 %>%
           </div>
         </div>
         <br>

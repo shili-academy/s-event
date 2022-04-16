@@ -1,5 +1,9 @@
 <div class="row">
   <div class="col-8 border-end border-4 p-3">
+    <h5>Progress</h5>
+    <div class="p-0 my-3">
+      <%= render "progress", task: @task %>
+    </div>
     <h5>
       Description
     </h5>
@@ -23,9 +27,39 @@
     <%= turbo_stream_from :tasks %>
     <%= turbo_frame_tag :tasks,
       class: "row" do %>
-      <%= render "sub_tasks", sub_tasks: @task.sub_tasks if @task %>
+      <%= render "list_sub_tasks", sub_tasks: @task.sub_tasks if @task %>
     <% end %>
   </div>
   <div class="col-4">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">Start Time</th>
+          <td><%= parse_time @task.start_time %></td>
+        </tr>
+        <tr>
+          <th scope="row">End Time</th>
+          <td><%= parse_time @task.end_time %></td>
+        </tr>
+        <tr>
+          <th scope="row">Estimated Costs</th>
+          <td><%= number_to_currency(@task.estimated_costs, locale: :vi) %></td>
+        </tr>
+        <tr>
+          <th scope="row">Actual Costs</th>
+          <td><%= number_to_currency(@task.actual_costs, locale: :vi) %></td>
+        </tr>
+        <tr>
+          <th scope="row">Action</th>
+          <td>
+            <%= link_to :Edit, edit_event_task_path(@task.event_id,@task),data: { turbo: false},
+              class: "text-decoration-none text-primary fw-bold" %>
+            &emsp;
+            <%= link_to :Delete, event_task_path(@task.event_id, @task), method: :delete,  data: {confirm_swal: "success"},
+              class: "text-decoration-none text-danger fw-bold" %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
