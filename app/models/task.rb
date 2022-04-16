@@ -13,8 +13,8 @@ class Task < ApplicationRecord
   before_save :add_tasks_with_topic
 
   def add_tasks_with_topic 
-    self.parent_id = nil unless changes[:event_id][0] == nil
-    
+    self.parent_id = nil unless changes.try(:event_id).try(0) == nil
+  
     sub_tasks.each do |task|
       next if task.event_id == event_id
       
