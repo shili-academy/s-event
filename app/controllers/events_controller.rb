@@ -7,8 +7,9 @@ class EventsController < ApplicationController
 
   def show
     @tasks = @event.tasks
+    gon.id_json = @event.id
     gon.event_id = @event.id
-    gon.url = change_time_event_tasks_path event_id: @event.id
+    gon.url_new_task = new_event_task_path event_id: @event.id
   end
 
   def edit; end
@@ -16,7 +17,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update event_params
-        format.html{redirect_to event_url(@event), notice: "Successfully"}
+        format.html{redirect_to event_url(@event), success: "Cập nhật thông tin sự kiện thành công"}
         format.json{render :show, status: :ok, location: @event}
       else
         format.html{render :edit, status: :unprocessable_entity}
@@ -29,14 +30,17 @@ class EventsController < ApplicationController
     @event = current_user.events.new event_params
     @event.user = current_user
     if @event.save
-      flash.now[:success] = "Thanh cong"
+      flash[:success] = "Tạo sự kiện thành công"
+      redirect_to event_path(@event)
     else
-      flash.now[:warning] = "That bai"
+      flash.now[:error] = @task.errors.full_messages.to_sentence
     end
   end
 
   def destroy
     @event.destroy
+    flash[:success] = "Xóa sự kiện thành công"
+    redirect_to root_path
   end
 
   private

@@ -1,35 +1,27 @@
-<%= turbo_frame_tag dom_id(task), class: "col p-3 mb-3" do %>
-  <div class="card shadow-sm p-3 mb-3 bg-body rounded width-400">
-    <%= link_to task.name, event_task_path(event_id: @event || 1, id: task), remote: true, data: { turbo: false }, 
+<%= turbo_frame_tag dom_id(task), class: "col p-4" do %>
+  <div class="box-task">
+    <%= link_to truncate(task.name, length: 30), event_task_path(event_id: @event || 1, id: task), remote: true, data: { turbo: false }, 
       "data-bs-toggle": :modal, "data-bs-target": "#exampleModal", "data-bs-whatever": "@mdo",
-      class:"h3 text-decoration-none text-dark" %>
+      class:"h5 text-decoration-none text-dark fw-bold" %>
     <div class="progress my-3">
-      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" 
+      <div class="progress-bar progress-bar-striped progress-bar-animated <%= color_completion_rate task.progress %>" role="progressbar" 
         style="width: <%= task.progress || 0 %>%;" 
         aria-valuenow="<%= task.progress || 0 %>" 
         aria-valuemin="0" aria-valuemax="100">
         <%= task.progress || 0 %>%
       </div>
     </div>
-    <p>
-      <i class="fa-solid fa-calendar-minus"></i>
-      <%= parse_time task.start_time %>
-      <i class="fa-solid fa-calendar-plus ms-5"></i>
-      <%= parse_time task.end_time %>
-    </p>    
-    <p>
-      <i class="fa-solid fa-comment-dollar"></i>
-      <%= number_to_currency(task.estimated_costs, locale: :vi)  %>
-      <i class="fa-solid fa-money-bills ms-5"></i>
-      <%= number_to_currency(task.actual_costs, locale: :vi)  %>
-    </p>
-    <br>
-    <div>
-      <%= link_to :Edit, edit_event_task_path(task.event_id,task), data: { turbo: false }, remote: true,
-        class: "text-decoration-none text-primary fw-bold" %>
-      &emsp;
-      <%= link_to :Delete, event_task_path(task.event_id, task), method: :delete, 
-        class: "text-decoration-none text-danger fw-bold" %>
+    <div class="row">
+      <div class="col-8 <%= "text-danger fw-bold" if (task.end_time || Time.now ) < Time.now %>">
+        <i class="fa-solid fa-calendar-plus"></i>
+        <%= parse_time task.end_time %>
+      </div>
+      <% if task.sub_tasks.count > 0 %>
+        <span class="col">
+          <i class="fa-solid fa-sitemap" title="Sub tasks"></i> 
+          <%= task.sub_tasks.count %>
+        </span>
+      <% end %>
     </div>
   </div>
 <% end %>

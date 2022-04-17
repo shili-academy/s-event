@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  before_action :load_event, only: [:create, :show, :edit, :update, :destroy, :change_time, :new]
-  before_action :load_task, only: [:show, :edit, :update, :destroy, :change_time]
+  before_action :load_event, only: [:create, :show, :edit, :update, :destroy, :new]
+  before_action :load_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
   def index
@@ -8,12 +8,22 @@ class TasksController < ApplicationController
   end
 
   # GET /tasks/1
-  def show   
+  def show
+    @show_modal_task = true
+    @tasks = @event.tasks
+    gon.id_json = @task.id
+    gon.event_id = @task.event_id
+    gon.url_new_task = new_event_task_path event_id: @event.id
+    respond_to do |format|
+      format.html{render "events/show"}
+      format.json{render "events/show"}
+      format.js
+    end
   end
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = Task.new start_time: params[:start_time], end_time: params[:end_time] || params[:start_time]
   end
 
   # GET /tasks/1/edit
@@ -23,31 +33,32 @@ class TasksController < ApplicationController
   # POST /tasks
   def create
     @task = @event.tasks.build(task_params)
-
     if @task.save
-      render json: "OK", status: :ok
+      flash[:success] = "Tạo task thành công"
+      redirect_to event_task_path(event_id: @event, id: @task.id)
     else
-      render json: @event.errors, status: :unprocessable_entity
+      flash.now[:error] = @task.errors.full_messages.to_sentence
     end
   end
 
   # PATCH/PUT /tasks/1
   def update
-    if @task.update(task_params)
-      redirect_to event_path(@event)
-    else
-      render :edit
+    respond_to do |format|
+      if @task.update(task_params)
+        format.html{redirect_to event_task_path(event_id: @event, id: @task.id), success: "Cập nhật thành công"}
+        flash.now[:success] = "Cập nhật thành công"
+      else
+        flash.now[:error] = @task.errors.full_messages.to_sentence
+        format.js
+      end
     end
   end
 
   # DELETE /tasks/1
   def destroy
     @task.destroy
-  end
-
-  def change_time
-    @task.update(start_time: params[:start_time], end_time: params[:end_time] || params[:start_time])
-    flash[:success] = "Cập nhật thành công"
+    flash[:success] = "Xóa task thành công"
+    redirect_to event_task_path(event_id: @event, id: @task.parent_id)
   end
 
   private
@@ -59,16 +70,15 @@ class TasksController < ApplicationController
 
   def load_task
     @task = @event.tasks.find_by id: params[:id]
-  
     @task.parent_task ? handle_breadcrumb : 
-      add_breadcrumb(@task.id.to_s + "-" + @task.name, event_task_path(event_id: @event , id: @task), remote: true)
+      add_breadcrumb(@task.id.to_s + "-" + truncate(@task.name, length: 20), event_task_path(event_id: @event , id: @task), remote: true)
   end
 
 
   # Only allow a list of trusted parameters through.
   def task_params
     params.require(:task).permit :name, :event_id, :description, :start_time, :end_time, :estimated_costs, 
-      :actual_costs, :location, :progress, :parent_id
+      :actual_costs, :progress, :parent_id, :status
   end
 
   def handle_breadcrumb
@@ -80,7 +90,7 @@ class TasksController < ApplicationController
 
     end if x.parent_task
     sc.reverse.each do |task|
-      add_breadcrumb task.id.to_s + "-" + task.name, event_task_path(event_id: @event , id: task), remote: true
+      add_breadcrumb task.id.to_s + "-" + truncate(task.name, length: 20), event_task_path(event_id: @event , id: task), remote: true
     end
   end
 end

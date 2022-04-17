@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2022_04_04_073429) do
     t.decimal "estimated_costs", default: "0.0"
     t.decimal "actual_costs", default: "0.0"
     t.float "progress", default: 0.0
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_tasks_on_event_id"

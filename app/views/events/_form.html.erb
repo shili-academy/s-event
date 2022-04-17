@@ -1,43 +1,30 @@
 <%= form_for event, remote: true do |f|%>
-  <div class="grid grid-cols-6 gap-6">
-    <div class="col-span-6 sm:col-span-3">
-      <%= f.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-      <%= f.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+  <div class="row">
+    <div class="col-md-6 my-3">
+      <%= f.label :name, class: "form-label" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "name", required: true %>
+    </div>
+    <div class="col-md-6 my-3">
+      <%= f.label :happen_at, class: "form-label" %>
+      <%= f.datetime_field :happen_at, class: "form-control",
         placeholder: "name", required: true %>
     </div>
-    <div class="col-span-6 sm:col-span-3">
-      <%= f.label :happen_at, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-      <%= f.datetime_field :happen_at, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-        placeholder: "name", required: true %>
+    <div class="col-md-6 my-3">
+      <%= f.label :location, class: "form-label" %>
+      <%= f.text_field :location, class: "form-control" %>
     </div>
-  </div>
-  <div class="my-4">
-    <%= f.label :description, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400" %>
-    <%= f.text_area :description, class: "block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border
-    border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
-    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-    rows: 6, required: true %>
-  </div>
-  <div class="grid grid-cols-6 gap-6">
-    <div class="col-span-6 sm:col-span-3">
-      <%= f.label :location, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400" %>
-      <%= f.text_field :location, class: "block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border
-      border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
-      dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-    </div>
-    <div class="col-span-6 sm:col-span-3">
-      <%= f.label :topic, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400" %>
+    <div class="col-md-6 my-3">
+      <%= f.label :topic, class: "form-label" %>
       <%= f.select :topic_id, options_for_select(Topic.all.pluck(:name, :id), event.topic&.id),  { },
-      class: "block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border
-    border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
-    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+        class: "form-control" %>
     </div>
-  </div>
-  <div class="my-4 modal-footer">
-    <%= f.submit class: "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" %>
+    <div class="my-3">
+      <%= f.label :description, class: "form-label" %>
+      <%= f.text_area :description, class: "form-control",
+      rows: 6, required: true %>
+    </div>
+    <div class="my-3">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>

@@ -15,6 +15,11 @@
  */
 @import "font-awesome";
 @import "bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
 
 #flash {
   position: fixed;
@@ -23,6 +28,95 @@
   z-index: 100;
 }
 
-.width-400 {
+.bg-0_20 {
+  background-color: #94B49F !important;
+}
+
+.bg-21_40 {
+  background-color: #789395 !important;
+}
+
+.bg-41_60 {
+  background-color: #417D7A !important;
+}
+
+.bg-61_80 {
+  background-color: #1D5C63 !important;
+}
+
+.bg-81_99 {
+  background-color: #1A3C40 !important;
+}
+
+.bg-100 {
+  background-color: #062C30 !important;
+}
+
+.bg-statistic {
+  background-color: #EFF3F9;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  background-color: #EFF3F9 !important;
+  border-color: #dee2e6 #dee2e6 #EFF3F9 !important;
+}
+
+.nav-tabs .nav-link.active {
+  font-weight: bold;
+}
+
+.headings-2 {
+  font-size: 35px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.statistic {
+  background-color: #EFF3F9;
+
+  .box-format {
+    padding: 30px;
+    background-color: #fdfdff;
+    border-radius: 15px;
+    box-shadow: 0 0 2px rgb(187, 187, 187);
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.box-task {
   width: 400px;
+  margin: 5px;
+  padding: 20px;
+  background-color: #fdfdff;
+  border-radius: 15px;
+  box-shadow: 0 0 3px rgb(187, 187, 187);
+}
+
+.box-event {
+  width: 400px;
+  padding: 20px;
+  background-color: #fdfdff;
+  border-radius: 15px;
+  box-shadow: 0 0 4px rgb(187, 187, 187);
+  
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: none;
+  }
 }

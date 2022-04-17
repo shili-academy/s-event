@@ -1,0 +1,14 @@
+vi:
+  activerecord:
+    models:
+      task: "Nhiệm vụ"
+    attributes:
+      task:
+        name: "Tên"
+        status: "Trạng thái"
+        progress: "Tiến độ"
+        description: "Mô tả"
+        estimated_costs: "Chi phí ước tính"
+        actual_costs: "Chi phí thực tế"
+        start_time: "Thời gian bắt đầu"
+        end_time: "Thời gian kết thúc"
