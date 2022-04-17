@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
+  include ActionView::Helpers::TextHelper
+
   before_action :set_locale
+  add_flash_types :success, :warning, :danger, :info
 
   def set_locale
     locale = params[:locale].to_s.strip.to_sym

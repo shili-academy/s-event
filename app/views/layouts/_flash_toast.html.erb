@@ -1,7 +1,7 @@
 <% flash.each do |type, msg| %>
   <script>
-    Swal.fire({
-      icon: "<%= type == :alert ? :info : type %>",
+    Toast.fire({
+      icon: "<%= (type == "alert" || type == "notice") ? :info : type %>",
       title: "<%= msg %>"
     });
   </script>

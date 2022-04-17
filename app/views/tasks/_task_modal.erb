@@ -1,8 +1,9 @@
 <div class="row">
   <div class="col-8 border-end border-4 p-3">
+    <h4><%= @task.name %></h4>
     <h5>Progress</h5>
     <div class="p-0 my-3">
-      <%= render "progress", task: @task %>
+      <%= render "shared/progress", task: @task %>
     </div>
     <h5>
       Description
@@ -13,7 +14,7 @@
     <h5>
       Subtask
     </h5>
-    <%= form_for [@event, Task.new] do |f| %>
+    <%= form_for [@event, Task.new], remote: true do |f| %>
       <div class="row g-3 my-3">
         <div class="col-9">
           <%= f.text_field :name, class: "form-control", placeholder: "name", required: true %>
@@ -25,8 +26,7 @@
       </div>          
     <% end %>
     <%= turbo_stream_from :tasks %>
-    <%= turbo_frame_tag :tasks,
-      class: "row" do %>
+    <%= turbo_frame_tag :tasks, class: "row" do %>
       <%= render "list_sub_tasks", sub_tasks: @task.sub_tasks if @task %>
     <% end %>
   </div>
@@ -34,12 +34,42 @@
     <table class="table">
       <tbody>
         <tr>
+          <th scope="row">Action</th>
+          <td>
+            <%= content_tag :span, class: "pe-auto text-success fw-bold", role: :button,
+              onclick: "copy_clipboard('#{event_task_url(event_id: @event || 1, id: @task)}')" do %>
+              <i class="fa-solid fa-copy"></i>
+            <% end %>
+            &emsp;
+            <%= link_to edit_event_task_path(@task.event_id,@task), data: {turbo: false}, remote: true,
+              class: "text-decoration-none text-primary fw-bold" do %> 
+              <i class="fa-solid fa-pen-to-square"></i>
+            <% end %>
+            &emsp;
+            <%= content_tag :span,
+              onclick: "confirm_delete('#{event_task_path(@task.event_id, @task)}')",
+              class: "text-decoration-none text-danger fw-bold" do %>
+              <i class="fa-solid fa-trash-can"></i>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Status</th>
+          <td>
+            <span class="badge rounded-pill <%= status_color @task.status %>">
+              <%= @task.status.capitalize %>
+            </span>
+          </td>
+        </tr>
+        <tr>
           <th scope="row">Start Time</th>
           <td><%= parse_time @task.start_time %></td>
         </tr>
         <tr>
-          <th scope="row">End Time</th>
-          <td><%= parse_time @task.end_time %></td>
+          <th scope="row">Due time</th>
+          <td class="<%= "text-danger fw-bold" if (@task.end_time || Time.now ) < Time.now %>">
+            <%= parse_time @task.end_time %>
+          </td>
         </tr>
         <tr>
           <th scope="row">Estimated Costs</th>
@@ -47,16 +77,8 @@
         </tr>
         <tr>
           <th scope="row">Actual Costs</th>
-          <td><%= number_to_currency(@task.actual_costs, locale: :vi) %></td>
-        </tr>
-        <tr>
-          <th scope="row">Action</th>
-          <td>
-            <%= link_to :Edit, edit_event_task_path(@task.event_id,@task),data: { turbo: false},
-              class: "text-decoration-none text-primary fw-bold" %>
-            &emsp;
-            <%= link_to :Delete, event_task_path(@task.event_id, @task), method: :delete,  data: {confirm_swal: "success"},
-              class: "text-decoration-none text-danger fw-bold" %>
+          <td class="<%= "text-danger fw-bold" if @task.actual_costs > @task.estimated_costs %>">
+            <%= number_to_currency(@task.actual_costs, locale: :vi) %>
           </td>
         </tr>
       </tbody>

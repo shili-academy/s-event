@@ -1,17 +1,19 @@
-<% provide :title, :home %>
-<% provide :header_page, "Your event" %>
-<% content_for :header_content do %>
-  <button data-modal-toggle="exampleModal" class="btn btn-primary rounded">
-    <span>Create event</span>
-  </button>
-<% end %>
-<div>
-  <%= turbo_stream_from :events %>
-  <%= turbo_frame_tag :events,
-    class: "row row-cols-1 row-cols-md-2 g-4" do %>
-    <%= render @events %>
-  <% end %>
+<% provide :title, "Dashboard" %>
+<div class="mb-4 row">
+  <h1 class="col-8">
+    Your event
+  </h1>
+  <div class="col">
+    <div class="float-end">
+      <%= link_to "Create event", new_event_path, class:"btn btn-primary mx-3",
+        "data-bs-toggle": :modal, "data-bs-target": "#exampleModal", "data-bs-whatever": "@mdo", remote: true %>
+    </div>
+  </div>
 </div>
+<%= turbo_stream_from :events %>
+<%= turbo_frame_tag :events, class: "row" do %>
+  <%= render @events %>
+<% end %>
 
 <% content_for :modal_title, "Create" %>
 <% content_for :modal_body do %>

@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(@event) do %>
-  <div class="block p-6 pb-0 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md
-    hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+  <div class="p-5 m-5">
+    <h2>Chỉnh sửa sự kiện</h2>
     <%= render "events/form", event: @event %>
   </div>
 <% end %>

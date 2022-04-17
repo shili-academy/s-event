@@ -11,11 +11,7 @@ Rails.application.routes.draw do
     end
 
     resources :events do
-      resources :tasks do
-        collection do
-          get :change_time
-        end
-      end
+      resources :tasks
     end
 
   end

@@ -1,3 +1,1 @@
-<% flash.each do |message_type, message| %>
- Swal.fire("Thông báo", "<%= message %>", "<%= message_type %>");
-<% end %>
+Swal.fire("Thông báo", "<%= @messages_success %>", "success");

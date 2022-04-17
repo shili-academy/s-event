@@ -10,6 +10,7 @@ class CreateTasks < ActiveRecord::Migration[6.1]
       t.decimal :estimated_costs, default: 0
       t.decimal :actual_costs, default: 0
       t.float :progress, default: 0
+      t.integer :status, default: 0
 
       t.timestamps
     end
