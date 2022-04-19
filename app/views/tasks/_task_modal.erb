@@ -11,6 +11,9 @@
     <span class="">
       <%= @task.description %>
     <span>
+    <div class="p-0 my-3">
+      <%= image_tag @task.image_url.to_s, alt: @task.name , class: "img-fluid rounded image_task", style: "width: 150px;" %>
+    </div>
     <h5>
       Subtask
     </h5>
@@ -85,3 +88,4 @@
     </table>
   </div>
 </div>
+<%= javascript_pack_tag "components/open_img.js" %> 
