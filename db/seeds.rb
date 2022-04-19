@@ -9,7 +9,7 @@ Topic.create!(name: "Wedding 12")
 Event.create!(
   user_id: User.first.id,
   name: "Root",
-  description: Faker::Restaurant.description,
+  description: "Faker::Restaurant.description",
   happen_at: Time.now
 )
 Task.create!(name: "Di choi", event: Event.first)
@@ -21,7 +21,7 @@ topic.save!
   Event.create!(
     user_id: User.first.id,
     name: Faker::Appliance.brand,
-    description: Faker::Restaurant.description,
+    description: "Faker::Restaurant.description",
     happen_at: Time.now,
     topic: Topic.first
   )

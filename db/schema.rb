@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_18_061133) do
+ActiveRecord::Schema.define(version: 2022_04_19_043811) do
 
-  create_table "events", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "topic_id"
+  create_table "events", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "topic_id"
     t.string "name"
     t.string "description"
     t.datetime "happen_at"
@@ -25,41 +25,42 @@ ActiveRecord::Schema.define(version: 2022_04_18_061133) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.integer "event_id", null: false
-    t.integer "parent_id"
+  create_table "tasks", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "parent_id"
     t.string "name"
     t.string "description"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.decimal "estimated_costs", default: "0.0"
-    t.decimal "actual_costs", default: "0.0"
+    t.decimal "estimated_costs", precision: 10, default: "0"
+    t.decimal "actual_costs", precision: 10, default: "0"
     t.float "progress", default: 0.0
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
+    t.string "images"
     t.index ["event_id"], name: "index_tasks_on_event_id"
     t.index ["parent_id"], name: "index_tasks_on_parent_id"
   end
 
-  create_table "topic_tasks", force: :cascade do |t|
-    t.integer "topic_id", null: false
-    t.integer "task_id", null: false
+  create_table "topic_tasks", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "topic_id", null: false
+    t.bigint "task_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["task_id"], name: "index_topic_tasks_on_task_id"
     t.index ["topic_id"], name: "index_topic_tasks_on_topic_id"
   end
 
-  create_table "topics", force: :cascade do |t|
+  create_table "topics", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "phone"

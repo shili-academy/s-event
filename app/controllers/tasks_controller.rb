@@ -70,15 +70,15 @@ class TasksController < ApplicationController
 
   def load_task
     @task = @event.tasks.find_by id: params[:id]
-    @task.parent_task ? handle_breadcrumb : 
+    @task.parent_task ? handle_breadcrumb :
       add_breadcrumb(@task.id.to_s + "-" + truncate(@task.name, length: 20), event_task_path(event_id: @event , id: @task), remote: true)
   end
 
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit :name, :event_id, :description, :start_time, :end_time, :estimated_costs, 
-      :actual_costs, :progress, :parent_id, :status, :image
+    params.require(:task).permit :name, :event_id, :description, :start_time, :end_time,
+      :estimated_costs, :actual_costs, :progress, :parent_id, :status, {images: []}
   end
 
   def handle_breadcrumb

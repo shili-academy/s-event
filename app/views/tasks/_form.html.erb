@@ -11,8 +11,8 @@
     </div>
     <div class="col-md-4">
       <%= f.label :progress, class: "form-label" %>
-      <%= f.range_field :progress, value: task.progress,  in: 0..100, step: 0.1, 
-        oninput: "this.nextElementSibling.value = this.value", 
+      <%= f.range_field :progress, value: task.progress,  in: 0..100, step: 0.1,
+        oninput: "this.nextElementSibling.value = this.value",
         class: "form-range" %>
       <output><%= task.progress %></output>%
     </div>
@@ -42,9 +42,10 @@
         placeholder: "name", required: true %>
     </div>
     <div class="col-md-3 my-3">
-      <%= f.label :image, class: "form-label" %>
-      <%= f.file_field :image, accept:'image/*', class: "form-control" %>
+      <%= f.label :images, class: "form-label" %>
+      <%= f.file_field :images,  multiple: true, accept:'image/*', class: "form-control" %>
     </div>
+    <%= f.hidden_field :event_id, {value: @event.id} %>
     <%= f.hidden_field :event_id, {value: @event.id} %>
     <div class="my-4">
       <%= f.submit class: "btn btn-primary" %>

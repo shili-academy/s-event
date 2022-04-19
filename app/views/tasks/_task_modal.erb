@@ -12,7 +12,9 @@
       <%= @task.description %>
     <span>
     <div class="p-0 my-3">
-      <%= image_tag @task.image_url.to_s, alt: @task.name , class: "img-fluid rounded image_task", style: "width: 150px;" %>
+      <% @task.images.each do |img| %>
+        <%= image_tag img.url, alt: img.identifier , class: "img-fluid rounded m-3 image_task", style: "width: 150px;" %>
+      <% end %>
     </div>
     <h5>
       Subtask
@@ -24,9 +26,9 @@
         </div>
         <div class="col-3">
           <%= f.hidden_field :parent_id, value: @task.id %>
-          <%= f.submit "Create sub task", class: "btn btn-primary" %>  
-        </div>          
-      </div>          
+          <%= f.submit "Create sub task", class: "btn btn-primary" %>
+        </div>
+      </div>
     <% end %>
     <%= turbo_stream_from :tasks %>
     <%= turbo_frame_tag :tasks, class: "row" do %>
@@ -45,7 +47,7 @@
             <% end %>
             &emsp;
             <%= link_to edit_event_task_path(@task.event_id,@task), data: {turbo: false}, remote: true,
-              class: "text-decoration-none text-primary fw-bold" do %> 
+              class: "text-decoration-none text-primary fw-bold" do %>
               <i class="fa-solid fa-pen-to-square"></i>
             <% end %>
             &emsp;
@@ -88,4 +90,4 @@
     </table>
   </div>
 </div>
-<%= javascript_pack_tag "components/open_img.js" %> 
+<%= javascript_pack_tag "components/open_img.js" %>
