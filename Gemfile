@@ -22,7 +22,7 @@ gem "groupdate"
 gem "hotwire-rails"
 gem "jquery-rails"
 gem "jpbuilder"
-gem "kaminari"  
+gem "kaminari"
 gem "puma", "~> 5.0"
 gem "rails", "~> 6.1.4", ">= 6.1.4.4"
 gem "rails-i18n"
@@ -37,6 +37,8 @@ gem "wdm", ">= 0.1.0" if Gem.win_platform?
 gem "sprockets-rails", "2.3.3"
 gem "rails_admin"
 gem "ransack"
+gem 'mysql2', '~> 0.5.0'
+
 gem "webpacker", "~> 5.0"
 
 group :development, :test do

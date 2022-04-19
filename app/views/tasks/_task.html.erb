@@ -1,12 +1,12 @@
 <%= turbo_frame_tag dom_id(task), class: "col p-4" do %>
   <div class="box-task">
-    <%= link_to truncate(task.name, length: 30), event_task_path(event_id: @event || 1, id: task), remote: true, data: { turbo: false }, 
+    <%= link_to truncate(task.name, length: 30), event_task_path(event_id: @event || 1, id: task), remote: true, data: { turbo: false },
       "data-bs-toggle": :modal, "data-bs-target": "#exampleModal", "data-bs-whatever": "@mdo",
       class:"h5 text-decoration-none text-dark fw-bold" %>
     <div class="progress my-3">
-      <div class="progress-bar progress-bar-striped progress-bar-animated <%= color_completion_rate task.progress %>" role="progressbar" 
-        style="width: <%= task.progress || 0 %>%;" 
-        aria-valuenow="<%= task.progress || 0 %>" 
+      <div class="progress-bar progress-bar-striped progress-bar-animated <%= color_completion_rate task.progress %>" role="progressbar"
+        style="width: <%= task.progress || 0 %>%;"
+        aria-valuenow="<%= task.progress || 0 %>"
         aria-valuemin="0" aria-valuemax="100">
         <%= task.progress || 0 %>%
       </div>
@@ -18,7 +18,7 @@
       </div>
       <% if task.sub_tasks.count > 0 %>
         <span class="col">
-          <i class="fa-solid fa-sitemap" title="Sub tasks"></i> 
+          <i class="fa-solid fa-sitemap" title="Sub tasks"></i>
           <%= task.sub_tasks.count %>
         </span>
       <% end %>
