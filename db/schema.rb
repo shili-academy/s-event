@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_04_073429) do
+ActiveRecord::Schema.define(version: 2022_04_18_061133) do
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2022_04_04_073429) do
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
     t.index ["event_id"], name: "index_tasks_on_event_id"
     t.index ["parent_id"], name: "index_tasks_on_parent_id"
   end

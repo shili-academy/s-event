@@ -41,6 +41,10 @@
       <%= f.number_field :actual_costs, class: "form-control",
         placeholder: "name", required: true %>
     </div>
+    <div class="col-md-3 my-3">
+      <%= f.label :image, class: "form-label" %>
+      <%= f.file_field :image, accept:'image/*', class: "form-control" %>
+    </div>
     <%= f.hidden_field :event_id, {value: @event.id} %>
     <div class="my-4">
       <%= f.submit class: "btn btn-primary" %>

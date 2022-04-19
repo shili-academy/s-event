@@ -3,6 +3,7 @@ class Task < ApplicationRecord
   has_many :topic_tasks, dependent: :destroy
   belongs_to :parent_task, class_name: Task.name, foreign_key: :parent_id, optional: true
   has_many :sub_tasks, class_name: Task.name, foreign_key: :parent_id, dependent: :destroy
+  mount_uploader :image, ImgTaskUploader
 
   after_create_commit{broadcast_prepend_to :tasks}
   after_update_commit{broadcast_replace_to :tasks}

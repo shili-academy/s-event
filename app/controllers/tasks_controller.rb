@@ -78,7 +78,7 @@ class TasksController < ApplicationController
   # Only allow a list of trusted parameters through.
   def task_params
     params.require(:task).permit :name, :event_id, :description, :start_time, :end_time, :estimated_costs, 
-      :actual_costs, :progress, :parent_id, :status
+      :actual_costs, :progress, :parent_id, :status, :image
   end
 
   def handle_breadcrumb
