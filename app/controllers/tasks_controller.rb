@@ -47,6 +47,7 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         format.html{redirect_to event_task_path(event_id: @event, id: @task.id), success: "Cập nhật thành công"}
         flash.now[:success] = "Cập nhật thành công"
+        format.js if params[:from_calendar]
       else
         flash.now[:error] = @task.errors.full_messages.to_sentence
         format.js

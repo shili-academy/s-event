@@ -77,6 +77,7 @@ function update_task(info) {
         start_time: event.start,
         end_time: event.end ?  event.end : event.start
       },
+      from_calendar: true,
       event_id: gon.event_id,
       id: event.id
     }
