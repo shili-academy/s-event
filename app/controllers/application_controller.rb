@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   include ActionView::Helpers::TextHelper
+  include ActionView::Helpers::UrlHelper
+  include ActionView::Helpers::TagHelper
+  include ActionView::Context
 
   before_action :set_locale
   add_flash_types :success, :warning, :danger, :info

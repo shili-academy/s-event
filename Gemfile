@@ -37,7 +37,8 @@ gem "wdm", ">= 0.1.0" if Gem.win_platform?
 gem "sprockets-rails", "2.3.3"
 gem "rails_admin"
 gem "ransack"
-gem 'mysql2', '~> 0.5.0'
+gem "mysql2", "~> 0.5.0"
+gem "google_visualr", "~> 2.5.1"
 
 gem "webpacker", "~> 5.0"
 
