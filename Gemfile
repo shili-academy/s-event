@@ -30,7 +30,6 @@ gem "redis", "~> 4.0"
 gem "sass-rails", ">= 6"
 gem "fullcalendar-rails"
 gem "momentjs-rails"
-gem "sqlite3", "~> 1.4"
 gem "popper_js", "~> 2.9.3"
 gem "turbolinks", "~> 5"
 gem "wdm", ">= 0.1.0" if Gem.win_platform?
@@ -44,6 +43,7 @@ gem "webpacker", "~> 5.0"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "sqlite3", "~> 1.4"
   gem "rubocop", "~> 0.74.0", require: false
   gem "rubocop-checkstyle_formatter", require: false
   gem "rubocop-rails", "~> 2.3.2", require: false
@@ -60,6 +60,10 @@ group :test do
   gem "capybara", ">= 3.26"
   gem "selenium-webdriver"
   gem "webdrivers"
+end
+
+group :production do
+  gem "pg"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
