@@ -7,14 +7,15 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import "chartkick"
 import "chartkick/highcharts"
 import "@hotwired/turbo-rails"
-import 'bootstrap/dist/js/bootstrap'
+import "bootstrap/dist/js/bootstrap"
 import "bootstrap/dist/css/bootstrap";
-window.bootstrap = require('bootstrap');
-import moment from 'moment'
+window.bootstrap = require("bootstrap");
+import moment from "moment"
 window.moment = moment
-require('jquery')
+require("jquery")
 //= require jquery
 //= require jquery3
 //= require jquery_ujs

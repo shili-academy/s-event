@@ -6,28 +6,43 @@
     <div class="m-3 d-flex flex-column justify-content-between align-items-stretch">
       <div class="col mb-3 box-format">
         <div class="title">
-          Chi phí
+          Nhiệm vụ
         </div>
         <br>
         <span class="text-primary fw-bold">
-          Chênh lệch: <%= (54.to_f/52.to_f).round(3) * 100 %> %
+          Tổng cộng: <%= @data_chart[:total_task_status][:total] %>
         </span>
+        <br>
+        <span class="text-primary fw-bold">
+          Đã hoàn thành:  <%= @data_chart[:total_task_status][:completed] %>
+        </span>
+        <br>
+        <span class="text-primary fw-bold">
+          Đang tạm hoãn: <%= @data_chart[:total_task_status][:pending] %>
+        </span>
+        <br>
+        <span class="text-primary fw-bold">
+          Đang thực hiện: <%= @data_chart[:total_task_status][:in_progress] %>
+        </span>
+         <br>
+        <span class="text-primary fw-bold">
+          Chưa thực hiện: <%= @data_chart[:total_task_status][:open] %>
+        </span>
+        <br>
       </div>
       <div class="col mt-3 box-format">
         <div class="title">
           Chi phí
         </div>
-        <span class="text-primary fw-bold">
-          Ước tính:  52.000.000
-        </span>
-        <br>
-        <span class="text-primary fw-bold">
-          Thực thế:  54.000.000
-        </span>
-        <br>
-        <span class="text-primary fw-bold">
-          Chênh lệch: <%= (54.to_f/52.to_f).round(3) * 100 %> %
-        </span> 
+        <%= pie_chart @data_chart[:costs_chart][:data],
+          colors: @data_chart[:costs_chart][:colors],
+          donut: true,
+          library: {
+            animation: {easing: :easeInOutCubic},
+            tooltip: {
+              pointFormat: "Costs: <b>{point.y}</b>"
+            }
+          } %>
       </div>
     </div>
   </div>

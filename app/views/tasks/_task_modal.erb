@@ -5,17 +5,23 @@
     <div class="p-0 my-3">
       <%= render "shared/progress", task: @task %>
     </div>
-    <h5>
+    <h5 class="my-3">
       Description
     </h5>
     <span class="">
       <%= @task.description %>
     <span>
-    <div class="p-0 my-3">
-      <% @task.images.each do |img| %>
-        <%= image_tag img.url, alt: img.identifier , class: "img-fluid rounded m-3 image_task", style: "width: 150px;" %>
-      <% end %>
-    </div>
+    <% if @task.images.any? %>
+      <h5>
+        Images
+      </h5>
+      <div class="d-flex flex-wrap justify-content-start align-items-center overflow-auto p-2 mb-3" style="height: 200px">
+        <% @task.images.each do |img| %>
+          <%= image_tag img.url, alt: img.identifier , class: "img-fluid rounded my-3 mx-2 image_task",
+            style: "width: 150px;" %>
+        <% end %>
+      </div>
+    <% end %>
     <h5>
       Subtask
     </h5>

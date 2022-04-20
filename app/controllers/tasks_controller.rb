@@ -11,6 +11,7 @@ class TasksController < ApplicationController
   def show
     @show_modal_task = true
     @tasks = @event.tasks
+    @data_chart = Statistic::BuildDataStatisticService.new(@event, @tasks).perform
     gon.id_json = @task.id
     gon.event_id = @task.event_id
     gon.url_new_task = new_event_task_path event_id: @event.id
@@ -47,6 +48,7 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         format.html{redirect_to event_task_path(event_id: @event, id: @task.id), success: "Cập nhật thành công"}
         flash.now[:success] = "Cập nhật thành công"
+        format.js if params[:from_calendar]
       else
         flash.now[:error] = @task.errors.full_messages.to_sentence
         format.js
@@ -58,7 +60,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     flash[:success] = "Xóa task thành công"
-    redirect_to event_task_path(event_id: @event, id: @task.parent_id)
+    redirect_to event_path(id: @event)
   end
 
   private
@@ -74,8 +76,6 @@ class TasksController < ApplicationController
       add_breadcrumb(@task.id.to_s + "-" + truncate(@task.name, length: 20), event_task_path(event_id: @event , id: @task), remote: true)
   end
 
-
-  # Only allow a list of trusted parameters through.
   def task_params
     params.require(:task).permit :name, :event_id, :description, :start_time, :end_time,
       :estimated_costs, :actual_costs, :progress, :parent_id, :status, {images: []}

@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 
   def show
     @tasks = @event.tasks
+    @data_chart = Statistic::BuildDataStatisticService.new(@event, @tasks).perform
     gon.id_json = @event.id
     gon.event_id = @event.id
     gon.url_new_task = new_event_task_path event_id: @event.id
