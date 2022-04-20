@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2022_04_19_043811) do
     t.bigint "user_id", null: false
     t.bigint "topic_id"
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.datetime "happen_at"
     t.string "location"
     t.datetime "created_at", precision: 6, null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_04_19_043811) do
     t.bigint "event_id", null: false
     t.bigint "parent_id"
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.datetime "start_time"
     t.datetime "end_time"
     t.decimal "estimated_costs", precision: 10, default: "0"
@@ -38,8 +38,7 @@ ActiveRecord::Schema.define(version: 2022_04_19_043811) do
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "image"
-    t.string "images"
+    t.text "images"
     t.index ["event_id"], name: "index_tasks_on_event_id"
     t.index ["parent_id"], name: "index_tasks_on_parent_id"
   end
@@ -55,7 +54,7 @@ ActiveRecord::Schema.define(version: 2022_04_19_043811) do
 
   create_table "topics", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
