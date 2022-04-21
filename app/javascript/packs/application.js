@@ -9,7 +9,6 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "chartkick"
 import "chartkick/highcharts"
-import "@hotwired/turbo-rails"
 import "bootstrap/dist/js/bootstrap"
 import "bootstrap/dist/css/bootstrap";
 window.bootstrap = require("bootstrap");
