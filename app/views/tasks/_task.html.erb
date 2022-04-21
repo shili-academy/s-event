@@ -1,6 +1,6 @@
-<%= turbo_frame_tag dom_id(task), class: "col p-4" do %>
+<div class="col p-4">
   <div class="box-task">
-    <%= link_to truncate(task.name, length: 30), event_task_path(event_id: @event || 1, id: task), remote: true, data: { turbo: false },
+    <%= link_to truncate(task.name, length: 30), event_task_path(event_id: @event || 1, id: task), remote: true,
       "data-bs-toggle": :modal, "data-bs-target": "#exampleModal", "data-bs-whatever": "@mdo",
       class:"h5 text-decoration-none text-dark fw-bold" %>
     <div class="progress my-3">
@@ -24,4 +24,4 @@
       <% end %>
     </div>
   </div>
-<% end %>
+</div>

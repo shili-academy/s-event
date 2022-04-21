@@ -36,10 +36,9 @@
         </div>
       </div>
     <% end %>
-    <%= turbo_stream_from :tasks %>
-    <%= turbo_frame_tag :tasks, class: "row" do %>
+    <div class="row">
       <%= render "list_sub_tasks", sub_tasks: @task.sub_tasks if @task %>
-    <% end %>
+    </div>
   </div>
   <div class="col-4">
     <table class="table">
@@ -52,7 +51,7 @@
               <i class="fa-solid fa-copy"></i>
             <% end %>
             &emsp;
-            <%= link_to edit_event_task_path(@task.event_id,@task), data: {turbo: false}, remote: true,
+            <%= link_to edit_event_task_path(@task.event_id,@task), remote: true,
               class: "text-decoration-none text-primary fw-bold" do %>
               <i class="fa-solid fa-pen-to-square"></i>
             <% end %>

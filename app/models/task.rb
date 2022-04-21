@@ -7,11 +7,6 @@ class Task < ApplicationRecord
 
   serialize :images, JSON
 
-
-  after_create_commit{broadcast_prepend_to :tasks}
-  after_update_commit{broadcast_replace_to :tasks}
-  after_destroy_commit{broadcast_remove_to :tasks}
-
   enum status: {open: 0, in_progress: 1, pending: 2, completed: 3}
 
   validates :progress, allow_nil: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
