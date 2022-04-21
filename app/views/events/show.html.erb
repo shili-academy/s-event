@@ -4,8 +4,8 @@
   </h1>
   <div class="col">
     <div class="float-end">
-      <%= link_to "Create task", new_event_task_path(@event.id), class:"btn btn-primary mx-3",
-        "data-bs-toggle": :modal, "data-bs-target": "#exampleModal", "data-bs-whatever": "@mdo", remote: true %>
+      <%= link_to "Create task", new_event_task_path(@event.id),
+        class:"btn btn-primary mx-3", remote: true %>
       <%= link_to "Back list events", root_path, class:"btn btn-warning" %>
     </div>
   </div>
@@ -16,8 +16,12 @@
       type="button" role="tab" aria-controls="show_calendar" aria-selected="true">Calendar</button>
   </li>
   <li class="nav-item" role="presentation">
+    <button class="nav-link" id="show_main_tasks-tab" data-bs-toggle="tab" data-bs-target="#show_main_tasks"
+      type="button" role="tab" aria-controls="show_main_tasks" aria-selected="false">Main Tasks</button>
+  </li>
+  <li class="nav-item" role="presentation">
     <button class="nav-link" id="show_tasks-tab" data-bs-toggle="tab" data-bs-target="#show_tasks"
-      type="button" role="tab" aria-controls="show_tasks" aria-selected="false">Tasks</button>
+      type="button" role="tab" aria-controls="show_tasks" aria-selected="false">All Tasks</button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="statistic-tab" data-bs-toggle="tab" data-bs-target="#statistic"
@@ -39,12 +43,23 @@
     </div>
     <div class="my-4 p-3" id="calendar"></div>
   </div>
-  <div class="tab-pane fade p-3" id="show_tasks" role="tabpanel" aria-labelledby="show_tasks-tab">
+  <div class="tab-pane fade p-3" id="show_main_tasks" role="tabpanel" aria-labelledby="show_main_tasks-tab">
     <div class="headings-2 ms-3">
-      Danh sách tasks
+      Danh sách main tasks
     </div>
     <div class="row my-4">
         <%= render @tasks.where(parent_id: nil) %>
+    </div>
+  </div>
+  <div class="tab-pane fade p-3" id="show_tasks" role="tabpanel" aria-labelledby="show_tasks-tab">
+    <div class="headings-2 ms-3">
+      Danh sách all tasks
+    </div>
+    <div id="sort_link">
+      <%= render "events/list_sort_link" %>
+    </div>
+    <div id="all_tasks" class="row my-4">
+        <%= render @tasks %>
     </div>
   </div>
   <div class="tab-pane fade statistic p-4" id="organizational_chart" role="tabpanel" aria-labelledby="organizational_chart-tab">

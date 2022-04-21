@@ -1,0 +1,15 @@
+<%= pie_chart total_task_status_chart[:data],
+  colors: total_task_status_chart[:colors],
+  donut: true,
+  title: "<b>Nhiệm vụ</b>",
+  precision: 3,
+  thousands: ".",
+  decimal: ",",
+  round: 2,
+  library: {
+    animation: {easing: :easeInOutCubic},
+    tooltip: {
+      pointFormat: "Costs: <b>{point.y}</b>"
+    }
+  }
+%>
