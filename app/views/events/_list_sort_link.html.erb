@@ -1,0 +1,36 @@
+<%= search_form_for @q, url: event_path(@event), remote: true, class: "d-flex m-3" do |f| %>
+  <div class="form-group mx-2">
+    <%= f.label :name_or_description_cont, class: "form-label" %>
+    <%= f.search_field :name_or_description_cont, class: "form-control me-2",
+    placeholder: "Search tasks in this event..." %>
+  </div>
+  <div class="form-group mx-2">
+    <%= f.label :start_time_eq, class: "form-label" %>
+    <%= f.date_field :start_time_eq, class: "form-control" %>
+  </div>
+  <div class="form-group mx-2">
+    <%= f.label :id_eq, class: "form-label" %>
+    <%= f.number_field :id_eq, class: "form-control",
+      placeholder: "Id"  %>
+  </div>
+  <div class="form-group mx-2">
+    <%= f.label :end_time_eq, class: "form-label" %>
+    <%= f.date_field :end_time_eq, class: "form-control" %>
+  </div>
+  <div class="form-group mx-2">
+    <%= f.label :actual_costs_lteq, class: "form-label" %>
+    <%= f.number_field :actual_costs_lteq, class: "form-control me-2",
+      placeholder: "Actual costs" %>
+  </div>
+  <div class="form-group mx-2 align-bottom row align-items-end">
+    <%= f.submit class: "btn btn-outline-success" %>
+  </div>
+<% end %>
+<div class="btn-group m-3" role="group" aria-label="Basic outlined example">
+  <%= sort_link @q, :name, remote: true, class: "btn btn-outline-primary" %>
+  <%= sort_link @q, :created_at, remote: true, class: "btn btn-outline-primary" %>
+  <%= sort_link @q, :start_time, remote: true, class: "btn btn-outline-primary" %>
+  <%= sort_link @q, :end_time, remote: true, class: "btn btn-outline-primary" %>
+  <%= sort_link @q, :actual_costs, remote: true, class: "btn btn-outline-primary" %>
+  <%= sort_link @q, :estimated_costs, remote: true, class: "btn btn-outline-primary" %>
+</div>

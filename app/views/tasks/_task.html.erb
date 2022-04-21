@@ -1,7 +1,6 @@
 <div class="col p-4">
   <div class="box-task">
     <%= link_to truncate(task.name, length: 30), event_task_path(event_id: @event || 1, id: task), remote: true,
-      "data-bs-toggle": :modal, "data-bs-target": "#exampleModal", "data-bs-whatever": "@mdo",
       class:"h5 text-decoration-none text-dark fw-bold" %>
     <div class="progress my-3">
       <div class="progress-bar progress-bar-striped progress-bar-animated <%= color_completion_rate task.progress %>" role="progressbar"
@@ -12,10 +11,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-8 <%= "text-danger fw-bold" if (task.end_time || Time.now ) < Time.now %>">
-        <i class="fa-solid fa-calendar-plus"></i>
-        <%= parse_time task.end_time %>
-      </div>
+      <% if task.end_time %>
+        <div class="col-8 <%= "text-danger fw-bold" if (task.end_time || Time.now ) < Time.now %>">
+          <i class="fa-solid fa-calendar-plus"></i>
+          <%= parse_time task.end_time %>
+        </div>
+      <% end %>
       <% if task.sub_tasks.count > 0 %>
         <span class="col">
           <i class="fa-solid fa-sitemap" title="Sub tasks"></i>

@@ -1,0 +1,15 @@
+<%= pie_chart costs_chart[:data],
+  colors: costs_chart[:colors],
+  donut: true,
+  title: "<b>#{title}</b>",
+  precision: 3,
+  thousands: ".",
+  decimal: ",",
+  round: 2,
+  library: {
+    animation: {easing: :easeInOutCubic},
+    tooltip: {
+      pointFormat: "Costs: <b>{point.y}</b>"
+    }
+  }
+%>

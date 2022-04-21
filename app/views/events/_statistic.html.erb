@@ -2,73 +2,35 @@
   <div class="headings-2 ms-3">
     Thống kê sự kiện
   </div>
-  <div class="col-4 row">
-    <div class="m-3 d-flex flex-column justify-content-between align-items-stretch">
-      <div class="col mb-3 box-format">
-        <div class="title">
-          Nhiệm vụ
-        </div>
-        <br>
-        <span class="text-primary fw-bold">
-          Tổng cộng: <%= @data_chart[:total_task_status][:total] %>
-        </span>
-        <br>
-        <span class="text-primary fw-bold">
-          Đã hoàn thành:  <%= @data_chart[:total_task_status][:completed] %>
-        </span>
-        <br>
-        <span class="text-primary fw-bold">
-          Đang tạm hoãn: <%= @data_chart[:total_task_status][:pending] %>
-        </span>
-        <br>
-        <span class="text-primary fw-bold">
-          Đang thực hiện: <%= @data_chart[:total_task_status][:in_progress] %>
-        </span>
-         <br>
-        <span class="text-primary fw-bold">
-          Chưa thực hiện: <%= @data_chart[:total_task_status][:open] %>
-        </span>
-        <br>
+  <div class="col-12">
+    <div class="m-3 box-format d-flex flex-nowrap">
+      <div class="col-4 border-end">
+        <%= render "events/costs_chart", costs_chart: @data_chart[:costs_chart],
+          title: "Chi phí toàn sự kiện"%>
       </div>
-      <div class="col mt-3 box-format">
-        <div class="title">
-          Chi phí
-        </div>
-        <%= pie_chart @data_chart[:costs_chart][:data],
-          colors: @data_chart[:costs_chart][:colors],
-          donut: true,
-          library: {
-            animation: {easing: :easeInOutCubic},
-            tooltip: {
-              pointFormat: "Costs: <b>{point.y}</b>"
-            }
-          } %>
+      <div class="col-4 border-end">
+        <%= render "events/costs_chart", costs_chart: @data_chart[:actual_costs_chart],
+          title: "Chi phí đến thời điểm hiện tại" %>
       </div>
-    </div>
-  </div>
-  <div class="col-8">
-    <div class="m-3 box-format">
-      <div class="title">
-        Thời gian
+      <div class="col-4">
+        <%= render "events/statistic_total_tasks" , total_task_status_chart: @data_chart[:total_task_status_chart] %>
       </div>
-      <%= column_chart @tasks.group_by_day(:start_time).count %>
-    </div>
-  </div>
-  <div class="col-7">
-    <div class="m-3 box-format">
-      <div class="title">
-        Thời gian
-      </div>
-      <%= line_chart @tasks.group_by_day(:start_time).count %>
     </div>
   </div>
   <div class="col-5">
     <div class="m-3 box-format">
       <div class="title">
-        Thời gian
+        Tiến trình
       </div>
-      <%= pie_chart @tasks.group(:progress).count,
-        library: {animation: {easing: :easeInOutCubic}} %>
+      <%= render "events/process_chart", progress_chart: @data_chart[:process_chart] %>
+    </div>
+  </div>
+  <div class="col-7">
+    <div class="m-3 box-format">
+      <div class="title">
+        Thống kê trạng thái của mỗi nhiệm vụ theo ngày bắt đầu
+      </div>
+      <%= render "events/status_chart", status_chart: @data_chart[:status_chart] %>
     </div>
   </div>
 </div>
