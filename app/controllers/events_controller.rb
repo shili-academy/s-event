@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  load_and_authorize_resource
   before_action :load_event, only: %i(show edit update destroy)
 
   def index
@@ -13,6 +14,8 @@ class EventsController < ApplicationController
     gon.event_id = @event.id
     gon.url_new_task = new_event_task_path event_id: @event.id
   end
+
+  def new; end
 
   def edit; end
 
@@ -53,5 +56,10 @@ class EventsController < ApplicationController
 
   def load_event
     @event = current_user.events.find_by id: params[:id]
+
+    return if @event
+
+    flash[:warning] = "Event khong ton tai"
+    redirect_to root_path
   end
 end

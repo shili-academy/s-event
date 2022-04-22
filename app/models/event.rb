@@ -7,6 +7,8 @@ class Event < ApplicationRecord
 
   before_save :add_tasks_with_topic, if: -> {topic}
 
+  private
+
   def add_tasks_with_topic
     tasks_topic = self.topic.tasks
     tasks_event = []

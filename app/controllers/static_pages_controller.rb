@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
-  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, except: %(home)
 
   def home
-    @events = current_user.events.order(happen_at: :desc)
-    @event = Event.new
+    @q = current_user.events.ransack(params[:q])
+    @events = @q.result.page(params[:page]).per(params[:per_page] || Settings.per_page).order(happen_at: :desc)
   end
 end
