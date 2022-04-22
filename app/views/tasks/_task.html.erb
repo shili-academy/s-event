@@ -1,6 +1,6 @@
 <div class="col p-4">
   <div class="box-task">
-    <%= link_to truncate(task.name, length: 30), event_task_path(event_id: @event || 1, id: task), remote: true,
+    <%= link_to truncate(task.name, length: 30), event_task_path(event_id: @event || 1, id: task, tab: "show_main_tasks"), remote: true,
       class:"h5 text-decoration-none text-dark fw-bold" %>
     <div class="progress my-3">
       <div class="progress-bar progress-bar-striped progress-bar-animated <%= color_completion_rate task.progress %>" role="progressbar"

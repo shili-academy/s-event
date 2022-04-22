@@ -8,8 +8,8 @@
     <h5 class="my-3">
       Description
     </h5>
-    <span class="">
-      <%= @task.description %>
+    <span>
+      <%= @task.description.gsub(URI.regexp, '<a href="\0">\0</a>').html_safe if @task.description %>
     <span>
     <% if @task.images.any? %>
       <h5>
@@ -51,7 +51,7 @@
               <i class="fa-solid fa-copy"></i>
             <% end %>
             &emsp;
-            <%= link_to edit_event_task_path(@task.event_id,@task), remote: true,
+            <%= link_to edit_event_task_path(@task.event_id,@task), data: {turbo: false}, remote: true,
               class: "text-decoration-none text-primary fw-bold" do %>
               <i class="fa-solid fa-pen-to-square"></i>
             <% end %>

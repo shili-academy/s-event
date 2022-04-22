@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 
   def show
     @q = @event.tasks.ransack(params[:q])
-    @tasks = @q.result.page(params[:page])
+    @tasks = @q.result.page(params[:page]).per(params[:per_page] || Settings.per_page)
     @data_chart = Statistic::BuildDataStatisticService.new(@event, @event.tasks).perform
     gon.id_json = @event.id
     gon.event_id = @event.id

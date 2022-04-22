@@ -9,9 +9,10 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   def show
+    @q = @event.tasks.ransack(params[:q])
+    @tasks = @q.result.page(params[:page]).per(params[:per_page] || Settings.per_page)
+    @data_chart = Statistic::BuildDataStatisticService.new(@event, @event.tasks).perform
     @show_modal_task = true
-    @tasks = @event.tasks
-    @data_chart = Statistic::BuildDataStatisticService.new(@event, @tasks).perform
     gon.id_json = @task.id
     gon.event_id = @task.event_id
     gon.url_new_task = new_event_task_path event_id: @event.id
