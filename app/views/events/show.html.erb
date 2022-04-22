@@ -126,7 +126,11 @@
       </div>
       <%= link_to :Edit, edit_event_path(@event), remote: true, class: "text-decoration-none text-primary fw-bold" %>
       &emsp;
-      <%= link_to :Delete, event_path(@event), method: :delete, class: "text-decoration-none text-danger fw-bold" %>
+      <%= content_tag :span, onclick: "confirm_delete('#{event_path @event}')",
+        class: "text-decoration-none text-danger fw-bold" do %>
+        <i class="fa-solid fa-trash-can"></i>
+        Delete
+      <% end %>
     </div>
   </div>
 </div>

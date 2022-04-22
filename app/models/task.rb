@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :event
+  has_one :user, through: :event
   has_many :topic_tasks, dependent: :destroy
   belongs_to :parent_task, class_name: Task.name, foreign_key: :parent_id, optional: true
   has_many :sub_tasks, class_name: Task.name, foreign_key: :parent_id, dependent: :destroy
@@ -39,7 +40,7 @@ class Task < ApplicationRecord
   def add_start_time
     return if start_time
 
-    self.start_time = Time.now
+    self.start_time = parent_task&.start_time || Time.now
   end
 
   def check_end_time_less_than_start_time

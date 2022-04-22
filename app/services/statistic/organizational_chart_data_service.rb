@@ -11,7 +11,7 @@ class Statistic::OrganizationalChartDataService
     @tasks.each do |task|
       path = Rails.application.routes.url_helpers.event_task_path(event_id: @event, id: task)
       organizational_chart_tasks.append([
-        {v: "#{task.id}_" + task.name, f: link_to(task.name, path, remote: true, class: "text-decoration-none")         },
+        {v: "#{task.id}_" + task.name, f: link_to(task.name, path, remote: true, class: "text-decoration-none")},
         task.parent_id ? "#{task.parent_id}_" + task.parent_task.name : task.event.name , ""
       ])
     end

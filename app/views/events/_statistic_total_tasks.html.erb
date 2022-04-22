@@ -9,7 +9,8 @@
   library: {
     animation: {easing: :easeInOutCubic},
     tooltip: {
-      pointFormat: "Costs: <b>{point.y}</b>"
+      headerFormat: "Trạng thái: <b>{point.key}</b><br>",
+      pointFormat: "Số lượng: <b>{point.y} task </b><br>Chiếm: <b>{point.percentage:.1f} %</b>"
     }
   }
 %>

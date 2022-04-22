@@ -1,13 +1,12 @@
 class TasksController < ApplicationController
+  load_and_authorize_resource
   before_action :load_event, only: [:create, :show, :edit, :update, :destroy, :new]
-  before_action :load_task, only: [:show, :edit, :update, :destroy]
+  before_action :load_task, :add_breadcrumb_task, only: [:show, :edit, :update, :destroy]
 
-  # GET /tasks
   def index
     @tasks = Task.all
   end
 
-  # GET /tasks/1
   def show
     @q = @event.tasks.ransack(params[:q])
     @tasks = @q.result.page(params[:page]).per(params[:per_page] || Settings.per_page)
@@ -23,16 +22,12 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/new
   def new
     @task = Task.new start_time: params[:start_time], end_time: params[:end_time] || params[:start_time]
   end
 
-  # GET /tasks/1/edit
-  def edit
-  end
+  def edit; end
 
-  # POST /tasks
   def create
     @task = @event.tasks.build(task_params)
     if @task.save
@@ -43,7 +38,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tasks/1
   def update
     respond_to do |format|
       if @task.update(task_params)
@@ -57,7 +51,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1
   def destroy
     @task.destroy
     flash[:success] = "Xóa task thành công"
@@ -68,12 +61,23 @@ class TasksController < ApplicationController
 
   def load_event
     @event = current_user.events.find_by id: params[:event_id]
-    add_breadcrumb @event.name, event_path(@event)
+    return if @event
+
+    flash[:warning] = "Event khong ton tai"
+    redirect_to root_path
   end
 
   def load_task
     @task = @event.tasks.find_by id: params[:id]
-    @task.parent_task ? handle_breadcrumb :
+    return if @task
+
+    flash[:warning] = "Task khong ton tai"
+    redirect_to @event
+  end
+
+  def add_breadcrumb_task
+    add_breadcrumb @event.name, event_path(@event)
+    @task.parent_id ? handle_breadcrumb :
       add_breadcrumb(@task.id.to_s + "-" + truncate(@task.name, length: 20), event_task_path(event_id: @event , id: @task), remote: true)
   end
 
@@ -83,14 +87,13 @@ class TasksController < ApplicationController
   end
 
   def handle_breadcrumb
-    x = @task
-    sc = []
-    while x
-      sc << x
-      x = x.parent_task
-
-    end if x.parent_task
-    sc.reverse.each do |task|
+    task_temp = @task
+    breadcrumbs = []
+    while task_temp
+      breadcrumbs << task_temp
+      task_temp = task_temp.parent_task
+    end if task_temp.parent_task
+    breadcrumbs.reverse.each do |task|
       add_breadcrumb task.id.to_s + "-" + truncate(task.name, length: 20), event_task_path(event_id: @event , id: task), remote: true
     end
   end
