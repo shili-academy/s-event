@@ -58,8 +58,21 @@
     <div id="sort_link">
       <%= render "events/list_sort_link" %>
     </div>
+    <div class="m-3">
+      <%= form_tag event_path(@event), method: :get, remote: true, id: "limit_form" do %>
+        <div class="select-tag">
+          Show <%= select_tag :per_page, options_for_select([5, 10, 15, 20], selected: params[:per_page] || 10), onchange: "$('#limit_form').submit();" %> documents per page
+        </div>
+      <% end %>
+    </div>
+    <div class="m-3 paginate_task">
+      <%= render "events/paginate_task", tasks: @tasks %>
+    </div>
     <div id="all_tasks" class="row my-4">
         <%= render @tasks %>
+    </div>
+    <div class="m-3 paginate_task">
+      <%= render "events/paginate_task", tasks: @tasks %>
     </div>
   </div>
   <div class="tab-pane fade statistic p-4" id="organizational_chart" role="tabpanel" aria-labelledby="organizational_chart-tab">

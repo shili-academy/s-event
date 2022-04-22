@@ -1,2 +1,15 @@
 vi:
   title_page: "Shili Event"
+  ransack:
+    asc: thứ tự tăng dần
+    desc: descending
+    predicates:
+      cont: contains
+      not_cont: not contains
+      start: starts with
+      end: ends with
+      gt: greater than
+      lt: ít hơn
+      eq: bằng
+      lteq: ít hơn hoặc bằng
+    or: hoặc
