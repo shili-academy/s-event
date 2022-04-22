@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def init_ransack
-    @q ||= current_user.events.ransack(params[:q])
+    @q ||= (current_user.events.ransack(params[:q]) if current_user)
   end
 
   private
