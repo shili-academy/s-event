@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include ActionView::Context
 
   before_action :authenticate_user!
-  before_action :set_locale
+  before_action :set_locale, :init_ransack
   add_flash_types :success, :warning, :danger, :info
 
   def set_locale
@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
       format.html { redirect_to main_app.root_url, warning: exception.message }
       format.js { head :forbidden, content_type: 'text/html' }
     end
+  end
+
+  def init_ransack
+    @q ||= current_user.events.ransack(params[:q])
   end
 
   private
