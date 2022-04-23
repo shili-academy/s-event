@@ -1,0 +1,146 @@
+<div class="mb-4 row">
+  <h1 class="col-8">
+    Event: <%= @event.name %>
+  </h1>
+  <div class="col">
+    <div class="float-end">
+      <%= link_to "Create task", new_event_task_path(@event.id),
+        class:"btn btn-primary mx-3", remote: true %>
+      <%= link_to "Back list events", root_path, class:"btn btn-warning" %>
+    </div>
+  </div>
+</div>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="show_chart-tab" data-bs-toggle="tab" data-bs-target="#show_calendar"
+      type="button" role="tab" aria-controls="show_calendar" aria-selected="true">Calendar</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="show_main_tasks-tab" data-bs-toggle="tab" data-bs-target="#show_main_tasks"
+      type="button" role="tab" aria-controls="show_main_tasks" aria-selected="false">Main Tasks</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="show_tasks-tab" data-bs-toggle="tab" data-bs-target="#show_tasks"
+      type="button" role="tab" aria-controls="show_tasks" aria-selected="false">All Tasks</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="statistic-tab" data-bs-toggle="tab" data-bs-target="#statistic"
+      type="button" role="tab" aria-controls="statistic" aria-selected="false">Statistic</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="organizational_chart-tab" data-bs-toggle="tab" data-bs-target="#organizational_chart"
+      type="button" role="tab" aria-controls="organizational_chart" aria-selected="false">Organizational Chart</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="information-tab" data-bs-toggle="tab" data-bs-target="#information"
+      type="button" role="tab" aria-controls="information" aria-selected="false">Information</button>
+  </li>
+</ul>
+<div class="tab-content bg-statistic" id="myTabContent">
+  <div class="tab-pane fade p-3 show active" id="show_calendar" role="tabpanel" aria-labelledby="show_calendar-tab">
+    <div class="headings-2 ms-3">
+      Lịch trình công việc
+    </div>
+    <div class="my-4 p-3" id="calendar"></div>
+  </div>
+  <div class="tab-pane fade p-3" id="show_main_tasks" role="tabpanel" aria-labelledby="show_main_tasks-tab">
+    <div class="headings-2 ms-3">
+      Danh sách main tasks
+    </div>
+    <div class="row my-4">
+        <%= render @tasks.where(parent_id: nil) %>
+    </div>
+  </div>
+  <div class="tab-pane fade p-3" id="show_tasks" role="tabpanel" aria-labelledby="show_tasks-tab">
+    <div class="headings-2 ms-3">
+      Danh sách all tasks
+    </div>
+    <div id="sort_link">
+      <%= render "events/list_sort_link" %>
+    </div>
+    <div class="m-3">
+      <%= form_tag event_path(@event), method: :get, remote: true, id: "limit_form" do %>
+        <div class="select-tag">
+          Show <%= select_tag :per_page, options_for_select([5, 10, 15, 20], selected: params[:per_page] || 10), onchange: "$('#limit_form').submit();" %> documents per page
+        </div>
+      <% end %>
+    </div>
+    <div class="m-3 paginate_task">
+      <%= render "events/paginate_task", tasks: @tasks %>
+    </div>
+    <div id="all_tasks" class="row my-4">
+        <%= render @tasks %>
+    </div>
+    <div class="m-3 paginate_task">
+      <%= render "events/paginate_task", tasks: @tasks %>
+    </div>
+  </div>
+  <div class="tab-pane fade statistic p-4" id="organizational_chart" role="tabpanel" aria-labelledby="organizational_chart-tab">
+    <div class="headings-2 m-4 ps-4">
+      Organizational Chart
+    </div>
+    <div class="mx-4 p-3 overflow-auto" id="organizational">
+    </div>
+    <%= render_chart @data_chart[:organizational_chart], "organizational" %>
+  </div>
+  <div class="tab-pane fade statistic" id="statistic" role="tabpanel" aria-labelledby="statistic-tab">
+    <%= render "events/statistic" %>
+  </div>
+  <div class="tab-pane fade" id="information" role="tabpanel" aria-labelledby="information-tab">
+    <div class="headings-2 m-4 ps-4">
+      Information
+    </div>
+    <div class="mx-4 p-4">
+      <h3>
+        <%= @event.name %>
+      </h3>
+      <p class="font-normal text-gray-700 dark:text-gray-400">
+        <%=h truncate(@event.description, length: 100) %>
+      </p>
+      <p class="font-medium">
+        Happen at:
+        <span class="text-sm text-gray-500 dark:text-gray-400">
+          <%= @event.happen_at.strftime "%H:%M %d-%m-%Y" %>
+        <span>
+      </p>
+      <p class="font-medium">
+        Location:
+        <span class="text-sm text-gray-500 dark:text-gray-400">
+          <%= @event.location %>
+        <span>
+      </p>
+      <p class="font-medium">
+        Topic:
+        <span class="text-sm text-gray-500 dark:text-gray-400">
+          <%= @event.topic&.name || "None" %>
+        <span>
+      </p>
+      <span class="">Progress</span>
+      <div class="progress" style="height: 25px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated  bg-success" role="progressbar"
+          style="width: <%= @event.tasks.any? ? (@event.tasks.sum(:progress) / @event.tasks.count).round(3) : 0 %>%;"
+          aria-valuenow="<%= @event.tasks.any? ? (@event.tasks.sum(:progress) / @event.tasks.count).round(3) : 0 %>"
+          aria-valuemin="0" aria-valuemax="100">
+          <%= @event.tasks.any? ? (@event.tasks.sum(:progress) / @event.tasks.count).round(3)  : 0 %>%
+        </div>
+      </div>
+      <%= link_to :Edit, edit_event_path(@event), remote: true, class: "text-decoration-none text-primary fw-bold" %>
+      &emsp;
+      <%= content_tag :span, onclick: "confirm_delete('#{event_path @event}')",
+        class: "text-decoration-none text-danger fw-bold" do %>
+        <i class="fa-solid fa-trash-can"></i>
+        Delete
+      <% end %>
+    </div>
+  </div>
+</div>
+<% if @show_modal_task %>
+  <script>
+    $('#exampleModalLabel').html('<%= j render_breadcrumbs separator: " / " %>');
+    $('#modal_body').html('<%= j render "task_modal", task: @task %>');
+    $(document).ready(function () {
+      myModal.show();
+    });
+  </script>
+<% end %>
+<%= javascript_pack_tag "calendar_tasks.js" %>

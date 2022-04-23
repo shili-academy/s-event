@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title yield :title %></title>
+    <%= render "layouts/shim" %>
+    <%= include_gon %>
+  </head>
+  <body>
+    <%= render "layouts/modal" %>
+    <% if user_signed_in? %>
+      <%= render "layouts/admin/header" %>
+     <% end %>
+    <main class="m-3 p-3">
+        <%= yield %>
+    </main>
+    <div id="flash">
+      <%= render "layouts/flash_toast" %>
+    </div>
+  </body>
+</html>
+<%= javascript_pack_tag "components/init_functions.js" %>

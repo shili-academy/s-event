@@ -1,0 +1,24 @@
+<div class="col p-4">
+  <div class="box-event row">
+    <%= link_to event.name, event_path(event), class:"title col-12 mb-2" %>
+    <p class="col-12">
+      <i class="fa-solid fa-calendar"></i> <%= event.happen_at.strftime "%H:%M %d-%m-%Y" %>
+    </p>
+    <p class="col-6">
+      <i class="fa-solid fa-location-dot"></i> <%= event.location %>
+    </p>
+    <p class="col-6">
+      <i class="fa-solid fa-champagne-glasses"></i> <%= event.topic&.name || "None" %>
+    </p>
+    <div class="col-12">
+      <div class="progress" style="height: 25px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+          style="width: <%= event.tasks.any? ? (event.tasks.sum(:progress) / event.tasks.count).round(3) : 0 %>%;"
+          aria-valuenow="<%= event.tasks.any? ? (event.tasks.sum(:progress) / event.tasks.count).round(3) : 0 %>"
+          aria-valuemin="0" aria-valuemax="100">
+          <%= event.tasks.any? ? (event.tasks.sum(:progress) / event.tasks.count).round(3)  : 0 %>%
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

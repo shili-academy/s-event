@@ -33,7 +33,22 @@ class ApplicationController < ActionController::Base
     @q ||= (current_user.events.ransack(params[:q]) if current_user)
   end
 
+  def after_sign_in_path_for(resource)
+    if resource.admin?
+      admin_root_path
+    else
+      stored_location_for(resource) || root_path
+    end
+  end
+
   private
+
+  def is_admin?
+    return if current_user.admin?
+
+    flash[:warning] = t "receipt.not_permissions"
+    redirect_to root_url
+  end
 
   def after_sign_out_path_for(resource_or_scope)
     if resource_or_scope == :user
