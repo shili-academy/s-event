@@ -1,5 +1,24 @@
-<% provide :title, :home %>
+<% provide :title, "Collections event" %>
 <h2 class="text-2xl font-extrabold text-gray-900">Collections</h2>
-<div class="row row-cols-1 row-cols-md-2 g-4">
-  <%= render @events %>
+<div class="my-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">User</th>
+        <th scope="col">Name</th>
+        <th scope="col">Progress</th>
+        <th scope="col">Number of tasks</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @events %>
+    </tbody>
+  </table>
 </div>

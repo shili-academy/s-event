@@ -11,12 +11,16 @@
         <div id="content-wrapper" class="d-flex flex-column">
           <div id="content">
             <%= render "layouts/admin/topbar" %>
-            <div class="container-fluid">
+            <div class="container-fluid p-5">
               <%= yield %>
             </div>
           </div>
         <%= render "layouts/footer" %>
       </div>
+    </div>
+    <%= render "layouts/modal" %>
+    <div id="flash">
+      <%= render "layouts/flash_toast" %>
     </div>
   </body>
 </html>
