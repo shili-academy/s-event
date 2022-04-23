@@ -9,10 +9,11 @@
     <%= render "layouts/modal" %>
     <% if user_signed_in? %>
       <%= render "layouts/header" %>
-     <% end %>
+    <% end %>
     <main class="m-3 p-3">
-        <%= yield %>
+      <%= yield %>
     </main>
+    <%= render "layouts/footer" %>
     <div id="flash">
       <%= render "layouts/flash_toast" %>
     </div>

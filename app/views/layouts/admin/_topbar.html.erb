@@ -1,0 +1,63 @@
+
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+  <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+    <i class="fa fa-bars"></i>
+  </button>
+  <%= search_form_for @q, url: root_path,
+    class: "d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" do |f| %>
+    <div class="input-group">
+      <%= f.search_field :name_or_description_cont, class: "form-control bg-light border-0 small",
+        placeholder: "Search for..." %>
+      <%= button_tag(type: :submit, class: 'btn btn-primary') do %>
+        <i class="fas fa-search fa-sm"></i>
+      <% end %>
+    </div>
+  <% end %>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown no-arrow mx-1">
+      <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-bell fa-fw"></i>
+        <span class="badge badge-danger badge-counter">3+</span>
+      </a>
+      <div class="dropdown-list dropdown-menu shadow animated--grow-in"
+        aria-labelledby="alertsDropdown">
+        <h6 class="dropdown-header">
+            Alerts Center
+        </h6>
+        <%= link_to "#", class:"dropdown-item d-flex align-items-center" do %>
+          <div class="mr-3">
+            <div class="icon-circle bg-primary">
+              <i class="fas fa-file-alt text-white"></i>
+            </div>
+          </div>
+          <div>
+            <div class="small text-gray-500">December 12, 2019</div>
+            <span class="font-weight-bold">A new monthly report is ready to download!</span>
+          </div>
+        <% end %>
+        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+      </div>
+    </li>
+    <div class="topbar-divider d-none d-sm-block"></div>
+    <li class="nav-item dropdown no-arrow">
+      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+        <%= image_tag "avatar_none.webp", class: "img-profile rounded-circle" %>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+          aria-labelledby="userDropdown">
+        <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+          Profile
+        <% end %>
+        <div class="dropdown-divider"></div>
+        <%= link_to signout_path, method: :delete, class: "dropdown-item" do %>
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          Sign out
+        <% end %>
+      </div>
+    </li>
+  </ul>
+</nav>
