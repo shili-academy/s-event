@@ -87,51 +87,7 @@
     <%= render "events/statistic" %>
   </div>
   <div class="tab-pane fade" id="information" role="tabpanel" aria-labelledby="information-tab">
-    <div class="headings-2 m-4 ps-4">
-      Information
-    </div>
-    <div class="mx-4 p-4">
-      <h3>
-        <%= @event.name %>
-      </h3>
-      <p class="font-normal text-gray-700 dark:text-gray-400">
-        <%=h truncate(@event.description, length: 100) %>
-      </p>
-      <p class="font-medium">
-        Happen at:
-        <span class="text-sm text-gray-500 dark:text-gray-400">
-          <%= @event.happen_at.strftime "%H:%M %d-%m-%Y" %>
-        <span>
-      </p>
-      <p class="font-medium">
-        Location:
-        <span class="text-sm text-gray-500 dark:text-gray-400">
-          <%= @event.location %>
-        <span>
-      </p>
-      <p class="font-medium">
-        Topic:
-        <span class="text-sm text-gray-500 dark:text-gray-400">
-          <%= @event.topic&.name || "None" %>
-        <span>
-      </p>
-      <span class="">Progress</span>
-      <div class="progress" style="height: 25px;">
-        <div class="progress-bar progress-bar-striped progress-bar-animated  bg-success" role="progressbar"
-          style="width: <%= @event.tasks.any? ? (@event.tasks.sum(:progress) / @event.tasks.count).round(3) : 0 %>%;"
-          aria-valuenow="<%= @event.tasks.any? ? (@event.tasks.sum(:progress) / @event.tasks.count).round(3) : 0 %>"
-          aria-valuemin="0" aria-valuemax="100">
-          <%= @event.tasks.any? ? (@event.tasks.sum(:progress) / @event.tasks.count).round(3)  : 0 %>%
-        </div>
-      </div>
-      <%= link_to :Edit, edit_event_path(@event), remote: true, class: "text-decoration-none text-primary fw-bold" %>
-      &emsp;
-      <%= content_tag :span, onclick: "confirm_delete('#{event_path @event}')",
-        class: "text-decoration-none text-danger fw-bold" do %>
-        <i class="fa-solid fa-trash-can"></i>
-        Delete
-      <% end %>
-    </div>
+    <%= render "events/info" %>
   </div>
 </div>
 <% if @show_modal_task %>

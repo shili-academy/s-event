@@ -6,7 +6,6 @@
     <%= include_gon %>
   </head>
   <body>
-    <%= render "layouts/modal" %>
     <% if user_signed_in? %>
       <%= render "layouts/header" %>
     <% end %>
@@ -14,6 +13,7 @@
       <%= yield %>
     </main>
     <%= render "layouts/footer" %>
+    <%= render "layouts/modal" %>
     <div id="flash">
       <%= render "layouts/flash_toast" %>
     </div>

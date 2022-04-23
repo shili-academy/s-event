@@ -22,7 +22,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update event_params
-        format.html{redirect_to event_url(@event), success: "Cập nhật thông tin sự kiện thành công"}
+        format.html{redirect_to (current_user.admin? ? admin_events_path : event_url(@event)), success: "Cập nhật thông tin sự kiện thành công"}
         format.json{render :show, status: :ok, location: @event}
       else
         format.html{render :edit, status: :unprocessable_entity}
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
     @event.user = current_user
     if @event.save
       flash[:success] = "Tạo sự kiện thành công"
-      redirect_to event_path(@event)
+      redirect_to (current_user.admin? ? admin_events_path : event_url(@event))
     else
       flash.now[:error] = @task.errors.full_messages.to_sentence
     end
@@ -45,7 +45,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     flash[:success] = "Xóa sự kiện thành công"
-    redirect_to root_path
+    redirect_to (current_user.admin? ? admin_events_path : root_path)
   end
 
   private
