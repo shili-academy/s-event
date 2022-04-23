@@ -2,19 +2,21 @@
 <html>
   <head>
     <title><%= full_title yield :title %></title>
-    <%= render "layouts/shim" %>
+    <%= render "layouts/admin/shim" %>
     <%= include_gon %>
   </head>
-  <body>
-    <%= render "layouts/modal" %>
-    <% if user_signed_in? %>
-      <%= render "layouts/admin/header" %>
-     <% end %>
-    <main class="m-3 p-3">
-        <%= yield %>
-    </main>
-    <div id="flash">
-      <%= render "layouts/flash_toast" %>
+  <body id="page-top">
+    <div id="wrapper">
+      <%= render "layouts/admin/sidebar" %>
+        <div id="content-wrapper" class="d-flex flex-column">
+          <div id="content">
+            <%= render "layouts/admin/topbar" %>
+            <div class="container-fluid">
+              <%= yield %>
+            </div>
+          </div>
+        <%= render "layouts/footer" %>
+      </div>
     </div>
   </body>
 </html>
