@@ -1,0 +1,27 @@
+<div class="mb-4 row">
+  <h1 class="col-8">
+    Topic: <%= @topic.name %>
+  </h1>
+  <div class="col">
+    <div class="float-end">
+      <%= link_to "Create task", new_admin_topic_task_path(@topic),
+        class:"btn btn-primary mx-3", remote: true %>
+      <%= link_to "Back list events", admin_topics_path, class:"btn btn-warning" %>
+    </div>
+  </div>
+</div>
+<p><%= @topic.description %></p>
+<div>
+  <div class="mx-4 p-3 overflow-auto" id="organizational">
+  </div>
+  <%= render_chart @data_chart[:organizational_chart], "organizational" %>
+</div>
+<% if @show_modal_task %>
+  <script>
+    $(document).ready(function () {
+      $('#exampleModalLabel').html('<%= j render_breadcrumbs separator: " / " %>');
+      $('#modal_body').html('<%= j render "admin/tasks/task_modal", task: @task %>');
+      myModal.show();
+    });
+  </script>
+<% end %>

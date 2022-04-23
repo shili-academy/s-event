@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
-  belongs_to :event
+  belongs_to :event, optional: true
+  belongs_to :topic, optional: true
   has_one :user, through: :event
-  has_many :topic_tasks, dependent: :destroy
   belongs_to :parent_task, class_name: Task.name, foreign_key: :parent_id, optional: true
   has_many :sub_tasks, class_name: Task.name, foreign_key: :parent_id, dependent: :destroy
   mount_uploaders :images, ImagesTaskUploader

@@ -7,7 +7,7 @@ class Statistic::BuildDataStatisticService
   def perform
     {
       costs_chart: Statistic::CostsChartDataService.new(@tasks).perform,
-      organizational_chart: Statistic::OrganizationalChartDataService.new(@event, @tasks).perform,
+      organizational_chart: Statistic::OrganizationalChartDataService.new({event: @event, tasks: @tasks}).perform,
       total_task_status_chart: Statistic::TotalTaskStatusService.new(@tasks).perform,
       status_chart: Statistic::StatusChartDataService.new(@tasks).perform,
       actual_costs_chart: Statistic::CostsChartDataService.new(@tasks.less_than_or_equal_to(Date.today)).perform,

@@ -1,0 +1,13 @@
+<%= link_to admin_topic_task_path(topic_id: @topic || 1, id: sub_task),
+  class:"list-group-item list-group-item-action", "aria-current":"true", remote: true do %>
+  <div class="d-flex w-100 justify-content-between align-items-center">
+    <div class="col-6 text-truncate">
+      <% if sub_task.sub_tasks.count > 0 %>
+          <i class="fa-solid fa-sitemap" title="Sub tasks"></i>
+          <%= sub_task.sub_tasks.count %> -
+      <% end %>
+      <%= sub_task.id.to_s + "_" + truncate(sub_task.name, length: 33) %></div>
+    <div class="col-4"><%= render "shared/progress", task: sub_task %></div>
+    <small class="col-2 ps-3"><%= time_ago_in_words sub_task.created_at %></small>
+  </div>
+<% end %>

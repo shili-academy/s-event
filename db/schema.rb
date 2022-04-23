@@ -26,7 +26,8 @@ ActiveRecord::Schema.define(version: 2022_04_19_043811) do
   end
 
   create_table "tasks", charset: "utf8mb3", force: :cascade do |t|
-    t.bigint "event_id", null: false
+    t.bigint "event_id"
+    t.bigint "topic_id"
     t.bigint "parent_id"
     t.string "name"
     t.text "description"
@@ -41,15 +42,7 @@ ActiveRecord::Schema.define(version: 2022_04_19_043811) do
     t.text "images"
     t.index ["event_id"], name: "index_tasks_on_event_id"
     t.index ["parent_id"], name: "index_tasks_on_parent_id"
-  end
-
-  create_table "topic_tasks", charset: "utf8mb3", force: :cascade do |t|
-    t.bigint "topic_id", null: false
-    t.bigint "task_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["task_id"], name: "index_topic_tasks_on_task_id"
-    t.index ["topic_id"], name: "index_topic_tasks_on_topic_id"
+    t.index ["topic_id"], name: "index_tasks_on_topic_id"
   end
 
   create_table "topics", charset: "utf8mb3", force: :cascade do |t|
@@ -92,6 +85,5 @@ ActiveRecord::Schema.define(version: 2022_04_19_043811) do
   add_foreign_key "events", "users"
   add_foreign_key "tasks", "events"
   add_foreign_key "tasks", "tasks", column: "parent_id"
-  add_foreign_key "topic_tasks", "tasks"
-  add_foreign_key "topic_tasks", "topics"
+  add_foreign_key "tasks", "topics"
 end

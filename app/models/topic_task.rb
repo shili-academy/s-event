@@ -1,4 +1,4 @@
 class TopicTask < ApplicationRecord
   belongs_to :topic
-  belongs_to :task
+  has_many :tasks, dependent: :destroy
 end

@@ -1,5 +1,15 @@
-<% provide :title, "Collections event" %>
-<h2 class="text-2xl font-extrabold text-gray-900">Collections</h2>
+<% provide :title, "Collections topic" %>
+<div class="mb-4 row">
+  <h2 class="col-8">
+    Collections topic
+  </h2>
+  <div class="col">
+    <div class="float-end">
+      <%= link_to "Create topic", new_admin_topic_path,
+        class:"btn btn-primary mx-3", remote: true %>
+    </div>
+  </div>
+</div>
 <div class="my-3 overflow-auto">
   <table class="table table-striped table-hover">
     <thead>

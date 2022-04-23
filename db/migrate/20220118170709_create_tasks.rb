@@ -1,7 +1,8 @@
 class CreateTasks < ActiveRecord::Migration[6.1]
   def change
     create_table :tasks do |t|
-      t.references :event, null: false, foreign_key: true
+      t.references :event, null: true, foreign_key: true
+      t.references :topic, null: true, foreign_key: true
       t.references :parent, null: true, references: :tasks, foreign_key: { to_table: :tasks}
       t.string :name
       t.text :description
