@@ -61,6 +61,7 @@ class TasksController < ApplicationController
 
   def load_event
     @event = current_user.events.find_by id: params[:event_id]
+    @event = Event.find_by id: params[:id] if current_user.admin?
     return if @event
 
     flash[:warning] = "Event khong ton tai"

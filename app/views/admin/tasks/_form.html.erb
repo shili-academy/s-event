@@ -4,14 +4,19 @@
       <%= f.label :name, class: "form-label" %>
       <%= f.text_field :name, class: "form-control", placeholder: "name", required: true %>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <%= f.label :estimated_costs, class: "form-label" %>
       <%= f.number_field :estimated_costs, class: "form-control",  step: :any,
         placeholder: :estimated_costs, required: true %>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <%= f.label :status, class: "form-label" %>
       <%= f.select :status, options_for_select(Task.statuses.keys, task.status),  { },
+        class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.label :parent_id, class: "form-label" %>
+      <%= f.select :parent_id, options_for_select([nil] + @topic.tasks.except_task(task).pluck(:name, :id), task.parent_id),  { },
         class: "form-control" %>
     </div>
     <div class="col-md-12 my-3">
