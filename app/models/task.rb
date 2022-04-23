@@ -11,7 +11,7 @@ class Task < ApplicationRecord
   enum status: {open: 0, in_progress: 1, pending: 2, completed: 3}
 
   scope :less_than_or_equal_to, -> date {where "end_time <= ?", date}
-
+  scope :except_task, ->(task) { where.not(id: task.id) }
 
   ransacker :start_time, type: :date do
     Arel.sql("date(start_time)")
@@ -22,6 +22,7 @@ class Task < ApplicationRecord
 
   validates :progress, allow_nil: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
   validate :check_end_time_less_than_start_time, if: -> {start_time && end_time}
+  validate :check_parent, if: -> {parent_id}
 
   before_save :add_tasks_with_topic, :add_start_time
 
@@ -45,5 +46,9 @@ class Task < ApplicationRecord
 
   def check_end_time_less_than_start_time
     errors.add(:end_time, "không thể nhỏ hơn thời gian bắt đầu") if end_time < start_time
+  end
+
+  def check_parent
+    errors.add(:parent_id, "không thể  là chính nó") if parent_id == id
   end
 end

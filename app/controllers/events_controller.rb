@@ -56,6 +56,7 @@ class EventsController < ApplicationController
 
   def load_event
     @event = current_user.events.find_by id: params[:id]
+    @event = Event.find_by id: params[:id] if current_user.admin?
 
     return if @event
 
