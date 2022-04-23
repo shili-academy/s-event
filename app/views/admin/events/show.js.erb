@@ -1,0 +1,3 @@
+$('#all_tasks').html('<%= j render @tasks %>')
+$('#sort_link').html('<%= j render "events/list_sort_link" %>')
+$('.paginate_task').html('<%= j render "events/paginate_task", tasks: @tasks %>')

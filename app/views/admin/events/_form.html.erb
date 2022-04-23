@@ -1,0 +1,30 @@
+<%= form_for event, remote: true do |f|%>
+  <div class="row">
+    <div class="col-md-6 my-3">
+      <%= f.label :name, class: "form-label" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "name", required: true %>
+    </div>
+    <div class="col-md-6 my-3">
+      <%= f.label :happen_at, class: "form-label" %>
+      <%= f.datetime_field :happen_at, class: "form-control",
+        placeholder: "name", required: true %>
+    </div>
+    <div class="col-md-6 my-3">
+      <%= f.label :location, class: "form-label" %>
+      <%= f.text_field :location, class: "form-control" %>
+    </div>
+    <div class="col-md-6 my-3">
+      <%= f.label :topic, class: "form-label" %>
+      <%= f.select :topic_id, options_for_select(Topic.all.pluck(:name, :id), event.topic&.id),  { },
+        class: "form-control" %>
+    </div>
+    <div class="my-3">
+      <%= f.label :description, class: "form-label" %>
+      <%= f.text_area :description, class: "form-control",
+      rows: 6, required: true %>
+    </div>
+    <div class="my-3">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
