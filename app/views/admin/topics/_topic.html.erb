@@ -1,0 +1,12 @@
+<tr>
+  <th scope="row"><%= topic.id %></th>
+  <td><%= topic.name %></td>
+  <td><%=h truncate(topic.description, length: 100) %></td>
+  <td><%= topic.created_at %></td>
+  <td>
+    Edit
+
+    
+    Delete
+  </td>
+</tr>

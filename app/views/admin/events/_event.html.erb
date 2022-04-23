@@ -4,18 +4,19 @@
   <td><%= event.name %></td>
   <td><%= event.tasks.any? ? (event.tasks.sum(:progress) / event.tasks.count).round(3) : 0 %></td>
   <td><%= event.tasks.size %></td>
-  <td><%= event.name %></td>
-  <td><%= event.name %></td>
-  <td><%= event.name %></td>
-  <td><%= event.name %></td>
-  <td><%= event.name %></td>
+  <td><%= event.topic&.name || "None" %></td>
+  <td><%= event.location %></td>
+  <td><%= event.happen_at.strftime "%H:%M %d-%m-%Y" %></td>
+  <td><%= parse_time event.created_at %></td>
   <td>
-    <%= link_to edit_event_path(event), remote: true, class: "text-decoration-none text-primary fw-bold" do %>
+    <%= link_to event_path(event), class: "text-decoration-none text-success fw-bold me-2" do %>
+      <i class="fa-solid fa-eye"></i>
+    <% end %>
+    <%= link_to edit_event_path(event), remote: true, class: "text-decoration-none text-primary fw-bold mx-2" do %>
       <i class="fa-solid fa-pen-to-square"></i>
     <% end %>
-    &emsp;
     <%= content_tag :span, onclick: "confirm_delete('#{event_path event}')",
-      class: "text-decoration-none text-danger fw-bold" do %>
+      class: "text-decoration-none text-danger fw-bold mx-2" do %>
       <i class="fa-solid fa-trash-can"></i>
     <% end %>
   </td>
