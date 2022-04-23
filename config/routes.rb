@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :events do
         resources :tasks
       end
+      resources :topics
     end
   end
 end
