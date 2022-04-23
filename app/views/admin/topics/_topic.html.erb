@@ -4,9 +4,15 @@
   <td><%=h truncate(topic.description, length: 100) %></td>
   <td><%= topic.created_at %></td>
   <td>
-    Edit
-
-    
-    Delete
+    <%= link_to admin_topic_path(topic), class: "text-decoration-none text-success fw-bold me-2" do %>
+      <i class="fa-solid fa-eye"></i>
+    <% end %>
+    <%= link_to edit_admin_topic_path(topic), remote: true, class: "text-decoration-none text-primary fw-bold mx-2" do %>
+      <i class="fa-solid fa-pen-to-square"></i>
+    <% end %>
+    <%= content_tag :span, onclick: "confirm_delete('#{admin_topic_path topic}')",
+      class: "text-decoration-none text-danger fw-bold mx-2" do %>
+      <i class="fa-solid fa-trash-can"></i>
+    <% end %>
   </td>
 </tr>

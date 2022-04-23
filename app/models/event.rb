@@ -10,19 +10,30 @@ class Event < ApplicationRecord
   private
 
   def add_tasks_with_topic
-    tasks_topic = self.topic.tasks
-    tasks_event = []
-    tasks.each do |task|
-      next if task.event_id == id
-
-      task.event_id = id
-    end
+    tasks_topic = self.topic.tasks.where(parent_id: nil)
+    @tasks_event = []
     tasks_topic.each do |task|
       task_dup = task.dup
-      task_dup.event_id = id unless task_dup.id == id
+      task_dup.event_id = id
+      task_dup.topic_id = nil
+      task_dup.start_time = Time.now
       task_dup.save
-      tasks_event << task_dup
+      @tasks_event << task_dup
+      dup_sub_tasks task, task_dup.id
     end if changes.has_key?(:topic_id)
-    self.tasks << tasks_event
+    self.tasks << @tasks_event
+  end
+
+  def dup_sub_tasks task, task_dup_id
+    task.sub_tasks.each do |task|
+      task_dup = task.dup
+      task_dup.event_id = id
+      task_dup.topic_id = nil
+      task_dup.start_time = Time.now
+      task_dup.parent_id = task_dup_id
+      task_dup.save
+      @tasks_event << task_dup
+      dup_sub_tasks task, task_dup.id
+    end
   end
 end

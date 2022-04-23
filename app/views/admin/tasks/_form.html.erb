@@ -1,0 +1,27 @@
+<%= form_for [:admin, @topic, task], remote: true do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :name, class: "form-label" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "name", required: true %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :estimated_costs, class: "form-label" %>
+      <%= f.number_field :estimated_costs, class: "form-control",  step: :any,
+        placeholder: :estimated_costs, required: true %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :status, class: "form-label" %>
+      <%= f.select :status, options_for_select(Task.statuses.keys, task.status),  { },
+        class: "form-control" %>
+    </div>
+    <div class="col-md-12 my-3">
+      <%= f.label :description, class: "form-label" %>
+      <%= f.text_area :description, class: "form-control",
+      rows: 6, required: true %>
+    </div>
+    <%= f.hidden_field :topic_id, {value: @topic.id} %>
+    <div class="my-4">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

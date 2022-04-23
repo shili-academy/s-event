@@ -38,7 +38,7 @@ class EventsController < ApplicationController
       flash[:success] = "Tạo sự kiện thành công"
       redirect_to (current_user.admin? ? admin_events_path : event_url(@event))
     else
-      flash.now[:error] = @task.errors.full_messages.to_sentence
+      flash.now[:error] = @event.errors.full_messages.to_sentence
     end
   end
 

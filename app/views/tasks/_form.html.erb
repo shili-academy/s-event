@@ -23,29 +23,26 @@
     </div>
     <div class="col-md-3">
       <%= f.label :start_time, class: "form-label" %>
-      <%= f.datetime_field :start_time, class: "form-control",
-        placeholder: "name", required: true %>
+      <%= f.datetime_field :start_time, class: "form-control", required: true %>
     </div>
     <div class="col-md-3">
       <%= f.label :end_time, class: "form-label" %>
-      <%= f.datetime_field :end_time, class: "form-control",
-        placeholder: "name", required: true %>
+      <%= f.datetime_field :end_time, class: "form-control", required: true %>
     </div>
     <div class="col-md-3">
       <%= f.label :estimated_costs, class: "form-label" %>
       <%= f.number_field :estimated_costs, class: "form-control",  step: :any,
-        placeholder: "name", required: true %>
+        placeholder: "estimated_costs", required: true %>
     </div>
     <div class="col-md-3">
       <%= f.label :actual_costs, class: "form-label" %>
       <%= f.number_field :actual_costs, class: "form-control",  step: :any,
-        placeholder: "name", required: true %>
+        placeholder: "actual_costs", required: true %>
     </div>
     <div class="col-md-3 my-3">
       <%= f.label :images, class: "form-label" %>
       <%= f.file_field :images,  multiple: true, accept:'image/*', class: "form-control" %>
     </div>
-    <%= f.hidden_field :event_id, {value: @event.id} %>
     <%= f.hidden_field :event_id, {value: @event.id} %>
     <div class="my-4">
       <%= f.submit class: "btn btn-primary" %>
