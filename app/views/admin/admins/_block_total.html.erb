@@ -1,0 +1,17 @@
+<div class="col-3">
+  <div class="card border-start-5 border-left-<%= data[:color] %> shadow h-100">
+    <div class="card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mx-2">
+          <div class="fw-bold text-<%= data[:color] %> text-uppercase mb-1 small">
+            <%= data[:title] %>
+          </div>
+          <div class="h5 mb-0 fw-bold text-dark text-opacity-75"><%= data[:value] %></div>
+        </div>
+        <div class="col-auto mx-4">
+          <i class="<%= data[:icon] %> fa-2x text-dark text-opacity-75"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

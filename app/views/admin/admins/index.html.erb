@@ -1,1 +1,64 @@
-<h1>Admin</h1>
+<div class="statistic bg-light">
+  <div class="row justify-content-between p-3 m-4 mt-0">
+    <div class="headings-2 ms-3">sss
+    </div>
+    <div class="col-12">
+      <div class="row mb-5">
+        <%= render "admin/admins/block_total",
+          data: {
+            title: "User", value: User.all.size,
+            color: "primary", icon: "fa-solid fa-users" } %>
+        <%= render "admin/admins/block_total",
+          data: {
+            title: "Event", value: Event.all.size,
+            color: "danger", icon: "fa-solid fa-calendar-check" } %>
+        <%= render "admin/admins/block_total",
+          data: {
+            title: "Topic", value: Topic.all.size,
+            color: "success", icon: "fa-solid fa-champagne-glasses" } %>
+        <%= render "admin/admins/block_total",
+          data: {
+            title: "Actual costs", value: number_to_currency(Task.all.sum(:actual_costs), locale: :vi),
+            color: "warning", icon: "fa-solid fa-money-bill-trend-up" } %>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-8">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">Thống kê số lượng người đăng ký mới</h6>
+            </div>
+            <div class="card-body">
+              <%= line_chart User.group_by_day(:created_at).count,
+                library: {
+                  animation: {easing: :easeInOutCubic}
+                }
+              %>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">Thống kê người dùng theo role</h6>
+            </div>
+            <div class="card-body">
+              <%= pie_chart User.group(:role).count,
+                donut: true,
+                round: 2,
+                library: {
+                  animation: {easing: :easeInOutCubic},
+                  tooltip: {
+                    headerFormat: "Loại tài khoản: <b>{point.key}</b><br>",
+                    pointFormat: "Số lượng: <b>{point.y} account </b><br>Chiếm: <b>{point.percentage:.1f} %</b>"
+                  }
+                }
+              %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

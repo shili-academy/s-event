@@ -92,9 +92,9 @@
 </div>
 <% if @show_modal_task %>
   <script>
-    $('#exampleModalLabel').html('<%= j render_breadcrumbs separator: " / " %>');
-    $('#modal_body').html('<%= j render "task_modal", task: @task %>');
     $(document).ready(function () {
+      $('#exampleModalLabel').html('<%= j render_breadcrumbs separator: " / " %>');
+      $('#modal_body').html('<%= j render "task_modal", task: @task %>');
       myModal.show();
     });
   </script>
