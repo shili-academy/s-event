@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2022_04_19_043811) do
     t.text "description"
     t.datetime "happen_at"
     t.string "location"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["topic_id"], name: "index_events_on_topic_id"
@@ -58,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_04_19_043811) do
     t.string "phone"
     t.date "date_of_birth"
     t.string "address"
-    t.boolean "gender"
+    t.integer "gender", default: 0
     t.integer "role", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

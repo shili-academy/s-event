@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     namespace :admin do
       root "admins#index"
       resources :events
+      resources :users
       resources :topics do
         resources :tasks
       end

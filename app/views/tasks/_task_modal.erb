@@ -27,8 +27,12 @@
     </h5>
     <%= form_for [@event, Task.new], remote: true do |f| %>
       <div class="row g-3 my-3">
-        <div class="col-9">
+        <div class="col-6">
           <%= f.text_field :name, class: "form-control", placeholder: "name", required: true %>
+        </div>
+        <div class="col-3">
+          <%= f.number_field :estimated_costs, class: "form-control",  step: :any,
+            placeholder: "estimated_costs", required: true %>
         </div>
         <div class="col-3">
           <%= f.hidden_field :parent_id, value: @task.id %>

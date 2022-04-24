@@ -3,8 +3,8 @@ class Event < ApplicationRecord
   belongs_to :topic, optional: true
   has_many :tasks, dependent: :destroy
 
-  # accepts_nested_attributes_for :tasks
-
+  enum status: {open: 0, in_progress: 1, pending: 2, completed: 3}
+  
   before_save :add_tasks_with_topic, if: -> {topic}
 
   private

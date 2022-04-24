@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :phone
       t.date :date_of_birth
       t.string :address
-      t.boolean :gender
+      t.integer :gender, default: 0
       t.integer :role, default: 0
 
       t.timestamps

@@ -1,0 +1,7 @@
+<div class="bg-white shadow my-5 rounded-3 border-start-5 border-left-info">
+  <div class="list-group">
+    <% @user.events.each do |event|%>
+      <%= render "admin/users/event", event: event %>
+    <% end %>
+  </div>
+</div>

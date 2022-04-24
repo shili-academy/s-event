@@ -1,0 +1,59 @@
+
+<%= form_for [:admin, user], remote: true do |f| %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.label :first_name, class: "form-label" %>
+      <%= f.text_field :first_name, class: "form-control", placeholder: "name", required: true %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :last_name, class: "form-label" %>
+      <%= f.text_field :last_name, class: "form-control", placeholder: "name", required: true %>
+    </div>
+    <div class="col-md-6">
+      <%= f.label :email, class: "form-label" %>
+      <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email",
+        required: true, disabled: (controller.action_name.to_sym == :edit ? true :false) %>
+    </div>
+
+    <div class="col-md-3 my-3">
+      <%= f.label :phone, class: "form-label"  %>
+      <%= f.telephone_field :phone, class: "form-control" %>
+    </div>
+    <div class="col-md-3 my-3">
+      <%= f.label :date_of_birth %>
+      <%= f.date_field :date_of_birth, class: "form-control", min: "1900-1-1", max: "2004-1-1" %>
+    </div>
+    <div class="col-md-3 my-3">
+      <%= f.label :address, class: "form-label"%>
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+    <div class="col-md-3 my-3">
+      <%= f.label :gender, class: "form-label" %>
+      <%= f.select :gender, options_for_select(User.genders.keys, user.gender),  { },
+        class: "form-control" %>
+    </div>
+    <div class="col-md-6 my-3">
+      <%= f.label :password, class: "form-label" %>
+      <% if @minimum_password_length %>
+        <strong><em>(<%= @minimum_password_length %> characters minimum)</em></strong>
+      <% end %>
+      <%= f.password_field :password, class: "form-control",
+        autocomplete: "new-password" %>
+    </div>
+    <div class="col-md-6 my-3">
+      <%= f.label :password_confirmation, class: "form-label" %>
+      <%= f.password_field :password_confirmation, class: "form-control",
+        autocomplete: "new-password" %>
+    </div>
+    <div class="col-md-12 my-3">
+      <%= f.label :verification, class: "form-label" %>
+      <div class="form-check form-switch">
+        <%= f.check_box :verification, checked: user.confirmed_at.present? , class: "form-check-input", role: "switch" %>
+        <%= f.label :verification, class: "form-check-label" %>
+      </div>
+    </div>
+    <div class="my-3">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

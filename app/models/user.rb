@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  attr_accessor :verification
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable, :timeoutable
@@ -9,6 +10,7 @@ class User < ApplicationRecord
   has_many :tasks, through: :events
 
   enum role: {customer: 0, admin: 1, staff: 2}
+  enum gender: {male: 0, female: 1, other: 2}
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
   VALID_PHONE_REGEX = /\d[0-9]\)*\z/.freeze
@@ -28,5 +30,9 @@ class User < ApplicationRecord
 
   def full_name
     first_name + " " + last_name
+  end
+
+  def online?
+    updated_at > 1.minute.ago
   end
 end
