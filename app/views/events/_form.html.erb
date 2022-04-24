@@ -9,19 +9,30 @@
       <%= f.datetime_field :happen_at, class: "form-control",
         placeholder: "name", required: true %>
     </div>
-    <div class="col-md-6 my-3">
+    <div class="col-md-3 my-3">
+      <%= f.label :status, class: "form-label" %>
+      <%= f.select :status, options_for_select(Event.statuses.keys, event.status),  { },
+        class: "form-control" %>
+    </div>
+    <div class="col-md-3 my-3">
       <%= f.label :location, class: "form-label" %>
       <%= f.text_field :location, class: "form-control" %>
     </div>
-    <div class="col-md-6 my-3">
+    <div class="col my-3">
       <%= f.label :topic, class: "form-label" %>
-      <%= f.select :topic_id, options_for_select(Topic.all.pluck(:name, :id), event.topic&.id),  { },
+      <%= f.select :topic_id, options_for_select([nil] + Topic.all.pluck(:name, :id), event.topic_id),  { },
         class: "form-control" %>
     </div>
+    <% if current_user.admin? && current_namespace == :admin %>
+      <div class="col-md-3 my-3">
+        <%= f.label :user_id, class: "form-label" %>
+        <%= f.select :user_id, options_for_select(User.all.pluck(:last_name, :id), event.user_id),  { },
+          class: "form-control", required: true%>
+      </div>
+    <% end %>
     <div class="my-3">
       <%= f.label :description, class: "form-label" %>
-      <%= f.text_area :description, class: "form-control",
-      rows: 6, required: true %>
+      <%= f.text_area :description, class: "form-control", rows: 6 %>
     </div>
     <div class="my-3">
       <%= f.submit class: "btn btn-primary" %>

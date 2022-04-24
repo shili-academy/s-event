@@ -18,6 +18,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><%= link_to "Profile", user_path(current_user), class: "dropdown-item" %></li>
+            <li><%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %></li>
             <li><%= link_to "Admin", admin_root_path, class: "dropdown-item" if current_user.admin? %></li>
             <li><hr class="dropdown-divider"></li>
             <li><%= link_to "Tiếng việt", {locale: :vi}, {class: "dropdown-item"} %></li>

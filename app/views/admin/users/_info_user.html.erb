@@ -1,0 +1,48 @@
+<div class="row align-items-center">
+  <div class="col-lg-5 row justify-content-evenly">
+    <%= image_tag "avatar_none.webp", class: "col-8" %>
+  </div>
+  <div class="col-lg-6">
+    <div class="about-text go-to">
+      <h3 class="dark-color"><%= @user.full_name %></h3>
+      <div class="row about-list my-3">
+        <div class="col-md-6">
+          <div class="media">
+            <label>Birthday</label>&nbsp;/&nbsp;
+            <p><%= @user.date_of_birth %></p>
+          </div>
+          <div class="media">
+            <label>Address</label>&nbsp;/&nbsp;
+            <p><%= @user.address %></p>
+          </div>
+          <div class="media">
+            <label>Gender</label>&nbsp;/&nbsp;
+            <p><%= @user.gender %></p>
+          </div>
+          <div class="media">
+            <label>Phone</label>&nbsp;/&nbsp;
+            <p><%= @user.phone %></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="media">
+            <label>Email</label>&nbsp;/&nbsp;
+            <p><%= @user.email %></p>
+          </div>
+          <div class="media">
+            <label>Account type</label>&nbsp;/&nbsp;
+          <p><%= @user.role %></p>
+          </div>
+          <div class="media">
+            <label>Last sign in</label>&nbsp;/&nbsp;
+            <p><%= time_ago_in_words @user.last_sign_in_at if @user.last_sign_in_at %></p>
+          </div>
+          <div class="media">
+            <label>Created at</label>&nbsp;/&nbsp;
+            <p><%= parse_time @user.created_at %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

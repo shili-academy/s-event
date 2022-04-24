@@ -7,6 +7,7 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.text :description
       t.datetime :happen_at
       t.string :location
+      t.integer :status, default: 0
 
       t.timestamps
     end

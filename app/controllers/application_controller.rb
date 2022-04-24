@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_locale, :init_ransack
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+  after_action :update_user_online, if: :user_signed_in?
+
   add_flash_types :success, :warning, :danger, :info
 
   def set_locale
@@ -69,5 +70,9 @@ class ApplicationController < ActionController::Base
     else
       root_path
     end
+  end
+
+  def update_user_online
+    current_user.try :touch
   end
 end

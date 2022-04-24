@@ -6,6 +6,10 @@ module ApplicationHelper
     page_title.blank? ? base_title : "#{page_title} | #{base_title}"
   end
 
+  def current_namespace
+    params[:controller].split("/").first.to_sym
+  end
+
   def color_alert message_type
     case message_type
     when "alert"

@@ -1,7 +1,5 @@
 <div class="statistic bg-light">
   <div class="row justify-content-between p-3 m-4 mt-0">
-    <div class="headings-2 ms-3">sss
-    </div>
     <div class="col-12">
       <div class="row mb-5">
         <%= render "admin/admins/block_total",
@@ -27,10 +25,11 @@
         <div class="col-8">
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Thống kê số lượng người đăng ký mới</h6>
+              <h6 class="m-0 font-weight-bold text-success">Biến động theo ngày</h6>
             </div>
             <div class="card-body">
-              <%= line_chart User.group_by_day(:created_at).count,
+              <%= line_chart [{name: "New user", data: User.group_by_day(:created_at).count},
+                {name: "Events take place", data:Event.group_by_day(:happen_at).count}],
                 library: {
                   animation: {easing: :easeInOutCubic}
                 }
@@ -41,7 +40,7 @@
         <div class="col-4">
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Thống kê người dùng theo role</h6>
+              <h6 class="m-0 font-weight-bold text-danger">Thống kê người dùng theo role</h6>
             </div>
             <div class="card-body">
               <%= pie_chart User.group(:role).count,

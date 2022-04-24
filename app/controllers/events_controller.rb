@@ -25,15 +25,15 @@ class EventsController < ApplicationController
         format.html{redirect_to (current_user.admin? ? admin_events_path : event_url(@event)), success: "Cập nhật thông tin sự kiện thành công"}
         format.json{render :show, status: :ok, location: @event}
       else
-        format.html{render :edit, status: :unprocessable_entity}
-        format.json{render json: @event.errors, status: :unprocessable_entity}
+        flash.now[:error] = @event.errors.full_messages.to_sentence
+        format.js
       end
     end
   end
 
   def create
     @event = current_user.events.new event_params
-    @event.user = current_user
+    @event.user = current_user unless @event.user
     if @event.save
       flash[:success] = "Tạo sự kiện thành công"
       redirect_to (current_user.admin? ? admin_events_path : event_url(@event))
@@ -51,7 +51,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit :name, :description, :happen_at, :location, :topic_id
+    params.require(:event).permit :name, :description, :happen_at, :location, :status, :topic_id, :user_id
   end
 
   def load_event

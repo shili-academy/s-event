@@ -5,7 +5,7 @@
     <%= render "layouts/shim" %>
     <%= include_gon %>
   </head>
-  <body>
+  <body class="<%= yield :bg_body %>">
     <% if user_signed_in? %>
       <%= render "layouts/header" %>
     <% end %>

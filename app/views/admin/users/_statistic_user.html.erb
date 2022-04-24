@@ -1,0 +1,32 @@
+<div class="bg-white shadow p-3 my-3 rounded-3 border-start-5 border-left-success position-relative">
+  <div class="row">
+    <div class="col-6 col-lg-3">
+      <div class="count-data text-center text-success fw-bold">
+        <h6 class="count h2" data-to="500" data-speed="500"><%= @user.events.size %></h6>
+        <p class="m-0px text-opacity-75">Events</p>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="count-data text-center text-success fw-bold">
+        <h6 class="count h2" data-to="150" data-speed="150"><%= @user.tasks.size %></h6>
+        <p class="m-0px text-opacity-75">Tasks</p>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="count-data text-center text-success fw-bold">
+        <h6 class="count h2" data-to="150" data-speed="150"><%= @user.tasks.completed.size %></h6>
+        <p class="m-0px text-opacity-75">Tasks Completed</p>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="count-data text-center text-success fw-bold">
+        <h6 class="count h2" data-to="190" data-speed="190"><%= @user.tasks.sum :actual_costs %></h6>
+        <p class="text-opacity-75">Costs</p>
+      </div>
+    </div>
+  </div>
+  <span class="position-absolute top-0 start-100 translate-middle badge
+    rounded-pill <%= @user.online? ? 'bg-success' : 'bg-secondary' %>">
+    <%= @user.online? ? "Online" : "Offline" %>
+  </span>
+</div>

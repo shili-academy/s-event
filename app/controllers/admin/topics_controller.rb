@@ -33,8 +33,8 @@ class Admin::TopicsController < Admin::AdminsController
         format.html{redirect_to admin_topic_path(@topic), success: "Cập nhật thông tin topic thành công"}
         format.json{render :show, status: :ok, location: @topic}
       else
-        format.html{render :edit, status: :unprocessable_entity}
-        format.json{render json: @topic.errors, status: :unprocessable_entity}
+        flash.now[:error] = @topic.errors.full_messages.to_sentence
+        format.js
       end
     end
   end
