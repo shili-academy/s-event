@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-light" style="background-color: #203239;"">
+  <div class="container-fluid">
+    <%= link_to "S-event", root_path, class:"navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Admin Dashboard", admin_root_path,
+            class:"nav-link #{"active fw-bold" if controller.controller_name.to_sym == :admins }", "aria-current": "page" %>
+        </li>
+        <li class="nav-item">
+          <li>
+            <%= link_to "Events", admin_events_path,
+              class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :events }" %>
+          </li>
+        </li>
+        <li class="nav-item">
+          <li><%= link_to "Topics", admin_topics_path,
+            class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :topics }" %></li>
+        </li>
+        <li class="nav-item">
+          <li><%= link_to "Users", admin_users_path,
+            class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :users }" %></li>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= current_user.last_name || "Chua dat ten" %>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><%= link_to "Profile", user_path(current_user), class: "dropdown-item" %></li>
+            <li><%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to "Tiếng việt", {locale: :vi}, {class: "dropdown-item"} %></li>
+            <li><%= link_to "English", {locale: :en}, {class: "dropdown-item"} %></li>
+            <li><%= link_to "Sign out", signout_path, method: :delete, class: "dropdown-item" %></li>
+          </ul>
+        </li>
+      </ul>
+      <%= search_form_for @q, url: root_path,
+        class: "d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" do |f| %>
+        <div class="input-group">
+          <%= f.search_field :name_or_description_cont, class: "form-control bg-light border-0 small",
+            placeholder: "Search for..." %>
+          <%= button_tag(type: :submit, class: 'btn btn-primary') do %>
+            <i class="fas fa-search fa-sm"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>

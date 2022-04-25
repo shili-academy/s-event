@@ -5,18 +5,12 @@
     <%= render "layouts/shim" %>
     <%= include_gon %>
   </head>
-  <body id="page-top">
-    <div id="wrapper">
-      <%= render "layouts/admin/sidebar" %>
-        <div id="content-wrapper" class="d-flex flex-column">
-          <div id="content">
-            <%= render "layouts/admin/topbar" %>
-            <div class="container-fluid p-5">
-              <%= yield %>
-            </div>
-          </div>
-        <%= render "layouts/footer" %>
-      </div>
+  <body>
+    <%= render "layouts/admin/top_bar" %>
+    <div class="container-fluid bg-light p-5 min-vh-100">
+      <%= yield %>
+    </div>
+    <%= render "layouts/footer" %>
     </div>
     <%= render "layouts/modal" %>
     <div id="flash">

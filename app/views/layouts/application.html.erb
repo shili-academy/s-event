@@ -7,9 +7,9 @@
   </head>
   <body class="<%= yield :bg_body %>">
     <% if user_signed_in? %>
-      <%= render "layouts/header" %>
+      <%= render "layouts/top_bar" %>
     <% end %>
-    <main class="m-3 p-3">
+    <main class="min-vh-100">
       <%= yield %>
     </main>
     <%= render "layouts/footer" %>
