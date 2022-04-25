@@ -69,7 +69,13 @@
       <%= render "events/paginate_task", tasks: @tasks %>
     </div>
     <div id="all_tasks" class="row my-4">
+      <% if @tasks.any? %>
         <%= render @tasks %>
+      <% else %>
+        <div class="col-12 h4 text-center">
+          No data found
+        </div>
+      <% end %>
     </div>
     <div class="m-3 paginate_task">
       <%= render "events/paginate_task", tasks: @tasks %>

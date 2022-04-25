@@ -2,9 +2,6 @@
   <th scope="row"><%= link_to user.id, admin_user_path(user), class: "text-decoration-none text-primary fw-bold" %></th>
   <td><%= user.full_name %></td>
   <td><%= user.email %></td>
-  <td><%= user.gender %></td>
-  <td><%= user.date_of_birth %></td>
-  <td><%= user.address %></td>
   <td><%= user.role %></td>
   <td>
     <% if user.online? %>
