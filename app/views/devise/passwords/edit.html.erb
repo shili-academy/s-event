@@ -1,23 +1,8 @@
-<div class="shadow-lg p-3 mb-5 bg-body rounded m-5">
-  <h2 class="m-3 text-center">
-    Change your password
-  </h2>
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, class: "mt-8 space-y-6") do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <%= f.hidden_field :reset_password_token %>
-    <div>
-      <%= f.label :password, class: "form-label" %>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password",
-        class: "form-control", placeholder: "Password" %>
-    </div>
-    <div>
-      <%= f.label :password_confirmation, class: "form-label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password",
-        class: "form-control", placeholder: :password_confirmation %>
-    </div>
-    <%= f.submit "Change my password", class: "btn btn-primary mb-4" %>
-    <div>
-      <%= render "devise/shared/links" %>
-    </div>
-  <% end %>
-</div>
+<%= render "shared/landing_page" %>
+<script>
+  $(document).ready(function () {
+    $('#exampleModalLabel').html('Change your password');
+    $('#modal_body').html('<%= j render "shared/devise/change_password" %>');
+    myModal.show();
+  });
+</script>

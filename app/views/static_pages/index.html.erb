@@ -10,5 +10,11 @@
   </div>
 </div>
 <div class="row">
-  <%= render @events %>
+  <% if @events.any? %>
+    <%= render @events %>
+  <% else %>
+    <div class="col-12 h4 text-center">
+      No results found
+    </div>
+  <% end %>
 </div>

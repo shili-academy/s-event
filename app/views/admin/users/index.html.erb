@@ -5,7 +5,7 @@
   </h2>
   <div class="col">
     <div class="float-end">
-      <%= link_to "Create topic", new_admin_user_path,
+      <%= link_to "Create user", new_admin_user_path,
         class:"btn btn-primary mx-3", remote: true %>
     </div>
   </div>
@@ -17,9 +17,6 @@
         <th scope="col"><%= sort_link @q_user, :id, "#ID",class: "text-decoration-none" %></th>
         <th scope="col"><%= sort_link @q_user, :name, class: "text-decoration-none" %></th>
         <th scope="col"><%= sort_link @q_user, :email, class: "text-decoration-none" %></th>
-        <th scope="col"><%= sort_link @q_user, :gender, class: "text-decoration-none" %></th>
-        <th scope="col"><%= sort_link @q_user, :date_of_birth, class: "text-decoration-none" %></th>
-        <th scope="col"><%= sort_link @q_user, :address, class: "text-decoration-none" %></th>
         <th scope="col"><%= sort_link @q_user, :role, class: "text-decoration-none" %></th>
         <th scope="col"><%= sort_link @q_user, :updated_at, "Status", class: "text-decoration-none" %></th>
         <th scope="col"><%= sort_link @q_user, :confirmed_at, "Confirmed",class: "text-decoration-none" %></th>
