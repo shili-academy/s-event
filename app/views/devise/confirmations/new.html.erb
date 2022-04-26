@@ -1,18 +1,8 @@
-<div class="shadow-lg p-3 mb-5 bg-body rounded m-5">
-  <h2 class="m-3 text-center">
-    Resend confirmation instructions
-  </h2>
-  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, class: "mt-8 space-y-6") do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="mb-3">
-      <%= f.label :email, class: "form-label" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email",
-        class: "form-control", placeholder: "Email address",
-        value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-    </div>
-    <%= f.submit "Resend confirmation instructions", class: "btn btn-primary mb-4" %>
-    <div>
-      <%= render "devise/shared/links" %>
-    </div> 
-  <% end %>
-</div>
+<%= render "shared/landing_page" %>
+<script>
+  $(document).ready(function () {
+    $('#exampleModalLabel').html('Resend confirmation instructions');
+    $('#modal_body').html('<%= j render "shared/devise/confirmation" %>');
+    myModal.show();
+  });
+</script>

@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   scope "(:locale)", locale: /en|vi/ do
     devise_for :users
-    root "static_pages#home"
-    get "static_pages/index"
+    root "static_pages#index"
     get "static_pages/about"
     get "static_pages/help"
     as :user do

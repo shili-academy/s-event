@@ -1,6 +1,8 @@
-<div class="shadow-lg p-3 mb-5 bg-body rounded m-5">
-  <h2 class="m-3 text-center">
-    Sign up
-  </h2>
-  <%= render "shared/signup" %>
-</div>
+<%= render "shared/landing_page" %>
+<script>
+  $(document).ready(function () {
+    $('#exampleModalLabel').html('Sign up');
+    $('#modal_body').html('<%= j render "shared/devise/signup" %>');
+    myModal.show();
+  });
+</script>

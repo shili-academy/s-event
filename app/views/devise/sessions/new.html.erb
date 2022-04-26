@@ -1,6 +1,8 @@
-<div class="p-3 mb-5 bg-body rounded m-5">
-  <h2 class="m-3 text-center">
-    Sign in to your account
-  </h2>
-  <%= render "shared/login" %>
-</div>
+<%= render "shared/landing_page" %>
+<script>
+  $(document).ready(function () {
+    $('#exampleModalLabel').html('Sign in to your account');
+    $('#modal_body').html('<%= j render "shared/devise/login" %>');
+    myModal.show();
+  });
+</script>
