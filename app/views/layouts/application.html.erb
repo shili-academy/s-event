@@ -9,10 +9,10 @@
     <% if user_signed_in? %>
       <%= render "layouts/top_bar" %>
     <% end %>
-    <main class="min-vh-100">
+    <main class="min-vh-100 <%= "p-5" if user_signed_in? %>">
       <%= yield %>
     </main>
-    <%= render "layouts/footer" %>
+    <%= render (user_signed_in? ? "layouts/footer" : "layouts/footer_landing_page") %>
     <%= render "layouts/modal" %>
     <div id="flash">
       <%= render "layouts/flash_toast" %>
