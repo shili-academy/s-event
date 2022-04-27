@@ -10,7 +10,7 @@
     <div class="container-fluid bg-light p-5 min-vh-100">
       <%= yield %>
     </div>
-    <%= render "layouts/footer" %>
+    <%= render (user_signed_in? ? "layouts/footer" : "layouts/footer_landing_page") %>
     </div>
     <%= render "layouts/modal" %>
     <div id="flash">
