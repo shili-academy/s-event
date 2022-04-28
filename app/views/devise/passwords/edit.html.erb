@@ -1,8 +1,8 @@
 <%= render "shared/landing_page" %>
 <script>
   $(document).ready(function () {
-    $('#exampleModalLabel').html('Change your password');
-    $('#modal_body').html('<%= j render "shared/devise/change_password" %>');
-    myModal.show();
+    $('#modal_small_label').html('Change your password');
+    $('#modal_small_body').html('<%= j render "shared/devise/change_password" %>');
+    modalSmall.show();
   });
 </script>

@@ -19,7 +19,7 @@
               class: "nav-link #{"active" if controller_name.to_sym == :passwords }" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Account Verification", new_password_path(resource_name),
+            <%= link_to "Account Verification", new_confirmation_path(resource_name),
               class: "nav-link #{"active" if controller_name.to_sym == :confirmations }" %>
           </li>
         </ul>
