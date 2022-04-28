@@ -116,6 +116,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.5.0)
+    docile (1.4.0)
     dry-configurable (0.14.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.6)
@@ -150,6 +152,11 @@ GEM
       dry-schema (~> 1.9, >= 1.9.1)
     erubi (1.10.0)
     execjs (2.8.1)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faker (2.1.2)
       i18n (>= 0.8)
     ffi (1.15.5)
@@ -257,6 +264,10 @@ GEM
       bundler (>= 1.15.0)
       railties (= 6.1.5)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -293,6 +304,23 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    rspec-core (3.11.0)
+      rspec-support (~> 3.11.0)
+    rspec-expectations (3.11.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.11.0)
+    rspec-mocks (3.11.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.11.0)
+    rspec-rails (4.0.2)
+      actionpack (>= 4.2)
+      activesupport (>= 4.2)
+      railties (>= 4.2)
+      rspec-core (~> 3.10)
+      rspec-expectations (~> 3.10)
+      rspec-mocks (~> 3.10)
+      rspec-support (~> 3.10)
+    rspec-support (3.11.0)
     rubocop (0.74.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -324,6 +352,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    simplecov (0.21.2)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     spring (4.0.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
@@ -383,6 +417,7 @@ DEPENDENCIES
   chartkick
   config
   devise
+  factory_bot_rails
   faker (= 2.1.2)
   figaro
   font-awesome-rails
@@ -401,14 +436,17 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.4)
+  rails-controller-testing
   rails-i18n
   rails_admin
   ransack
+  rspec-rails (~> 4.0.1)
   rubocop (~> 0.74.0)
   rubocop-checkstyle_formatter
   rubocop-rails (~> 2.3.2)
   sass-rails (>= 6)
   selenium-webdriver
+  simplecov
   spring
   sprockets-rails (= 2.3.3)
   sqlite3 (~> 1.4)
