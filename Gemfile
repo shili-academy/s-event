@@ -45,6 +45,9 @@ group :development, :test do
   gem "rubocop", "~> 0.74.0", require: false
   gem "rubocop-checkstyle_formatter", require: false
   gem "rubocop-rails", "~> 2.3.2", require: false
+  gem "rails-controller-testing"
+  gem "rspec-rails", "~> 4.0.1"
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -57,6 +60,7 @@ end
 group :test do
   gem "capybara", ">= 3.26"
   gem "selenium-webdriver"
+  gem "simplecov"
   gem "webdrivers"
 end
 
