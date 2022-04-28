@@ -7,39 +7,39 @@
       <h3 class="dark-color"><%= @user.full_name %></h3>
       <div class="row about-list my-3">
         <div class="col-md-6">
-          <div class="media">
-            <label>Birthday</label>&nbsp;/&nbsp;
-            <p><%= @user.date_of_birth %></p>
+          <div class="media my-3">
+            <label class="fw-bold">Birthday</label>&nbsp;/&nbsp;
+            <%= @user.date_of_birth %>
           </div>
-          <div class="media">
-            <label>Address</label>&nbsp;/&nbsp;
-            <p><%= @user.address %></p>
+          <div class="media my-3">
+            <label class="fw-bold">Address</label>&nbsp;/&nbsp;
+            <%= @user.address %>
           </div>
-          <div class="media">
-            <label>Gender</label>&nbsp;/&nbsp;
-            <p><%= @user.gender %></p>
+          <div class="media my-3">
+            <label class="fw-bold">Gender</label>&nbsp;/&nbsp;
+            <%= @user.gender %>
           </div>
-          <div class="media">
-            <label>Phone</label>&nbsp;/&nbsp;
-            <p><%= @user.phone %></p>
+          <div class="media my-3">
+            <label class="fw-bold">Phone</label>&nbsp;/&nbsp;
+            <%= @user.phone %>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="media">
-            <label>Email</label>&nbsp;/&nbsp;
-            <p><%= @user.email %></p>
+          <div class="media my-3">
+            <label class="fw-bold">Email</label>&nbsp;/&nbsp;
+            <%= @user.email %>
           </div>
-          <div class="media">
-            <label>Account type</label>&nbsp;/&nbsp;
-          <p><%= @user.role %></p>
+          <div class="media my-3">
+            <label class="fw-bold">Account type</label>&nbsp;/&nbsp;
+            <%= @user.role %>
           </div>
-          <div class="media">
-            <label>Last sign in</label>&nbsp;/&nbsp;
-            <p><%= time_ago_in_words @user.last_sign_in_at if @user.last_sign_in_at %></p>
+          <div class="media my-3">
+            <label class="fw-bold">Last sign in</label>&nbsp;/&nbsp;
+            <%= time_ago_in_words @user.last_sign_in_at if @user.last_sign_in_at %>
           </div>
-          <div class="media">
-            <label>Created at</label>&nbsp;/&nbsp;
-            <p><%= parse_time @user.created_at %></p>
+          <div class="media my-3">
+            <label class="fw-bold">Created at</label>&nbsp;/&nbsp;
+            <%= parse_time @user.created_at %>
           </div>
         </div>
       </div>
