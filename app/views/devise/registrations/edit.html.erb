@@ -9,8 +9,8 @@
 </section>
 <script>
   $(document).ready(function () {
-    $('#modal_small_label').html('Edit <%= resource_name.to_s.humanize %>');
-    $('#modal_small_body').html('<%= j render "shared/devise/edit_user" %>');
-    modalSmall.show();
+    $('#exampleModalLabel').html('Edit <%= resource_name.to_s.humanize %>');
+    $('#modal_body').html('<%= j render "shared/devise/edit_user" %>');
+    myModal.show();
   });
 </script>

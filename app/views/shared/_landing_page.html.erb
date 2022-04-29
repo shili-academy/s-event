@@ -41,7 +41,12 @@
             <%= link_to "Sign up", signup_users_path, remote: true,
               class: "btn-grad text-light fw-bold btn px-5 py-2 fs-6 btn-lg mb-5 col-2" %>
             </div>
-            <img class="img-fluid col-12" src="https://demo.themefisher.com/dtox/images/hero-area/banner.png" alt="banner-img">
+            <%= image_tag "banner.png", class: "img-fluid col-12" %>
+            <%
+=begin%>
+ <img class="img-fluid col-12" src="https://demo.themefisher.com/dtox/images/hero-area/banner.png" alt="banner-img">
+<%
+=end%>
           </div>
         </div>
       </div>
