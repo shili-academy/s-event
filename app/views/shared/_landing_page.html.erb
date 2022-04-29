@@ -1,7 +1,10 @@
 <div>
   <section class="fixed-top navigation fs-5">
     <nav class="container row justify-content-between navbar navbar-expand-lg navbar-light">
-      <%= link_to "S-Event", root_path, class: "navbar-brand fs-1 fw-bold ms-5 col-3" %>
+      <div class="fs-1 fw-bold ms-5 col-3">
+        <%= image_tag "s-event-logo.png", style:"width: 45px" %>
+        <%= link_to "S-event", root_path, class: "navbar-brand text-logo" %>
+      </div>
       <div class="collapse navbar-collapse text-center" id="navbar">
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -42,11 +45,6 @@
               class: "btn-grad text-light fw-bold btn px-5 py-2 fs-6 btn-lg mb-5 col-2" %>
             </div>
             <%= image_tag "banner.png", class: "img-fluid col-12" %>
-            <%
-=begin%>
- <img class="img-fluid col-12" src="https://demo.themefisher.com/dtox/images/hero-area/banner.png" alt="banner-img">
-<%
-=end%>
           </div>
         </div>
       </div>
@@ -105,7 +103,7 @@
 </div>
 <script>
   $(window).scroll(function () {
-    if ($('.navigation').offset().top > 100) {
+    if ($('.navigation').offset().top > 50) {
       $('.navigation').addClass('nav-bg');
     } else {
       $('.navigation').removeClass('nav-bg');

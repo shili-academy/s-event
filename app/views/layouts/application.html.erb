@@ -9,15 +9,16 @@
     <% if user_signed_in? %>
       <%= render "layouts/top_bar" %>
     <% end %>
-    <main class="min-vh-100 <%= "p-5" if user_signed_in? %>">
+    <main class="min-vh-100 <%= "p-5 pb-0" if user_signed_in? %>">
       <%= yield %>
     </main>
-    <%= render (user_signed_in? ? "layouts/footer" : "layouts/footer_landing_page") %>
-    <%= render "layouts/modal" %>
-    <%= render "layouts/modal_small" %>
-    <div id="flash">
-      <%= render "layouts/flash_toast" %>
-    </div>
   </body>
+  <%= render "layouts/modal" %>
+  <%= render "layouts/modal_small" %>
+  <div id="flash">
+    <%= render "layouts/flash_toast" %>
+  </div>
+  <%= render (user_signed_in? ? "layouts/footer" : "layouts/footer_landing_page") %>
 </html>
 <%= javascript_pack_tag "components/init_functions.js" %>
+<%= javascript_pack_tag "components/init_variables.js" %>
