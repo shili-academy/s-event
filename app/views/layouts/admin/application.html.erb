@@ -10,12 +10,11 @@
     <div class="container-fluid bg-light p-5 min-vh-100">
       <%= yield %>
     </div>
-    <%= render (user_signed_in? ? "layouts/footer" : "layouts/footer_landing_page") %>
-    </div>
-    <%= render "layouts/modal" %>
-    <div id="flash">
-      <%= render "layouts/flash_toast" %>
-    </div>
   </body>
+  <%= render (user_signed_in? ? "layouts/footer" : "layouts/footer_landing_page") %>
+  <%= render "layouts/modal" %>
+  <div id="flash">
+    <%= render "layouts/flash_toast" %>
+  </div>
 </html>
 <%= javascript_pack_tag "components/init_functions.js" %>
