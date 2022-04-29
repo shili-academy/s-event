@@ -15,7 +15,7 @@
             <%= link_to "About", root_path(anchor: :about_us), class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Connect", "https://www.facebook.com/ShiliEvent/", class: "nav-link" %>
+            <%= link_to "Connect", root_path(anchor: :footer), class: "nav-link" %>
           </li>
           <li class="nav-item active">
             <%= link_to "Forgot your password?", new_password_path(resource_name),
@@ -102,6 +102,11 @@
   </section>
 </div>
 <script>
+  if ($('.navigation').offset().top > 50) {
+    $('.navigation').addClass('nav-bg');
+  } else {
+    $('.navigation').removeClass('nav-bg');
+  }
   $(window).scroll(function () {
     if ($('.navigation').offset().top > 50) {
       $('.navigation').addClass('nav-bg');
