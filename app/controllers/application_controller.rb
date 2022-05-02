@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::TagHelper
   include ActionView::Context
+  include PublicActivity::StoreController
 
   before_action :authenticate_user!
   before_action :set_locale, :init_ransack

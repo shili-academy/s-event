@@ -1,0 +1,5 @@
+<%= render_activities(@activities) %>
+<%= page_entries_info @activities, entry_name: "Activities" %>
+<div class="my-3">
+  <%= paginate @activities, remote: true %>
+</div>

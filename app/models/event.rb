@@ -1,10 +1,14 @@
 class Event < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil }
+
+
   belongs_to :user
   belongs_to :topic, optional: true
   has_many :tasks, dependent: :destroy
 
   enum status: {open: 0, in_progress: 1, pending: 2, completed: 3}
-  
+
   before_save :add_tasks_with_topic, if: -> {topic}
 
   private
