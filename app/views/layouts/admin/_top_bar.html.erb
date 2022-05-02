@@ -17,12 +17,16 @@
           </li>
         </li>
         <li class="nav-item">
-          <li><%= link_to "Topics", admin_topics_path,
-            class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :topics }" %></li>
+          <%= link_to "Topics", admin_topics_path,
+            class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :topics }" %>
         </li>
         <li class="nav-item">
-          <li><%= link_to "Users", admin_users_path,
-            class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :users }" %></li>
+          <%= link_to "Users", admin_users_path,
+            class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :users }" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Activity", admin_stories_path,
+            class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :stories }" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
