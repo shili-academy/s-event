@@ -9,7 +9,12 @@
       <%= f.select :status, options_for_select(Task.statuses.keys, task.status),  { },
         class: "form-control" %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
+      <%= f.label :parent_id, class: "form-label" %>
+      <%= f.select :parent_id, options_for_select([nil] + @event.tasks.except_task(task).pluck(:name, :id), task.parent_id),  { },
+        class: "form-control" %>
+    </div>
+    <div class="col-md-2">
       <%= f.label :progress, class: "form-label" %>
       <%= f.range_field :progress, value: task.progress,  in: 0..100, step: 0.1,
         oninput: "this.nextElementSibling.value = this.value",

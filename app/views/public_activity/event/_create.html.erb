@@ -1,0 +1,11 @@
+<li class="list-group-item">
+  <span class="glyphicon glyphicon-plus"></span>
+  <small class="text-muted"><%= a.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br/>
+  <% if a.trackable   %>
+    <strong><%= activity.owner&.full_name || ""  %></strong>
+
+    <%= link_to a.trackable_type, event_path(a.trackable) %> was added.
+  <% else %>
+    An article that is currently deleted was added.
+  <% end %>
+</li>

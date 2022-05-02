@@ -1,3 +1,12 @@
+<% if @show_modal_task %>
+  <script>
+    $(document).ready(function () {
+      $('#exampleModalLabel').html('<%= j render_breadcrumbs separator: " / " %>');
+      $('#modal_body').html('<%= j render "task_modal", task: @task %>');
+      myModal.show();
+    });
+  </script>
+<% end %>
 <div class="mb-4 row">
   <h1 class="col-8">
     Event: <%= @event.name %>
@@ -96,13 +105,4 @@
     <%= render "events/info" %>
   </div>
 </div>
-<% if @show_modal_task %>
-  <script>
-    $(document).ready(function () {
-      $('#exampleModalLabel').html('<%= j render_breadcrumbs separator: " / " %>');
-      $('#modal_body').html('<%= j render "task_modal", task: @task %>');
-      myModal.show();
-    });
-  </script>
-<% end %>
 <%= javascript_pack_tag "calendar_tasks.js" %>

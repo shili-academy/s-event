@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # devise_for :admins
-  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   scope "(:locale)", locale: /en|vi/ do
     devise_for :users
     root "static_pages#index"
@@ -24,6 +22,7 @@ Rails.application.routes.draw do
       root "admins#index"
       resources :events
       resources :users
+      resources :stories
       resources :topics do
         resources :tasks
       end
