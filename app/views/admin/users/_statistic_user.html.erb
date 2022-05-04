@@ -20,7 +20,7 @@
     </div>
     <div class="col-6 col-lg-3">
       <div class="count-data text-center text-success fw-bold">
-        <h6 class="count h2" data-to="190" data-speed="190"><%= @user.tasks.sum :actual_costs %></h6>
+        <h6 class="count h2" data-to="190" data-speed="190"><%= number_to_currency(@user.tasks.sum(:actual_costs), locale: :vi) %></h6>
         <p class="text-opacity-75">Costs</p>
       </div>
     </div>
