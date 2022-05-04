@@ -1,7 +1,6 @@
 class Task < ApplicationRecord
   include PublicActivity::Model
-  tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil }
-
+  tracked owner: Proc.new { |controller, model| controller&.current_user ? controller&.current_user : nil }
 
   belongs_to :event, optional: true
   belongs_to :topic, optional: true
