@@ -6,6 +6,10 @@ class Admin::UsersController < Admin::AdminsController
     @users = @q_user.result.page(params[:page]).per(params[:per_page] || Settings.per_page)
   end
 
+  def show
+    @activities = PublicActivity::Activity.where(owner: params[:id]).page(params[:page]).per(params[:per_page] || Settings.per_page)
+  end
+
   def create
     @user = User.new user_params
     if @user.save
