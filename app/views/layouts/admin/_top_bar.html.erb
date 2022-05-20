@@ -12,41 +12,29 @@
         </li>
         <li class="nav-item">
           <li>
-            <%= link_to "Events", admin_events_path,
+            <%= link_to t("navbar.events"), admin_events_path,
               class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :events }" %>
           </li>
         </li>
         <li class="nav-item">
-          <%= link_to "Topics", admin_topics_path,
+          <%= link_to t("navbar.topics"), admin_topics_path,
             class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :topics }" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Users", admin_users_path,
+          <%= link_to t("navbar.users"), admin_users_path,
             class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :users }" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Activity", admin_stories_path,
+          <%= link_to t("navbar.activity"), admin_stories_path,
             class: "nav-link #{"active fw-bold" if controller.controller_name.to_sym == :stories }" %>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= current_user.last_name || "Chua dat ten" %>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><%= link_to "Profile", user_path(current_user), class: "dropdown-item" %></li>
-            <li><%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><%= link_to "Tiếng việt", {locale: :vi}, {class: "dropdown-item"} %></li>
-            <li><%= link_to "English", {locale: :en}, {class: "dropdown-item"} %></li>
-            <li><%= link_to "Sign out", signout_path, method: :delete, class: "dropdown-item" %></li>
-          </ul>
-        </li>
+        <%= render "layouts/dropdown" %>
       </ul>
       <%= search_form_for @q, url: root_path,
         class: "d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" do |f| %>
         <div class="input-group">
           <%= f.search_field :name_or_description_cont, class: "form-control bg-light border-0 small",
-            placeholder: "Search for..." %>
+            placeholder: t("navbar.search_event") %>
           <%= button_tag(type: :submit, class: 'btn btn-primary') do %>
             <i class="fas fa-search fa-sm"></i>
           <% end %>

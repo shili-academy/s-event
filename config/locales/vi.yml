@@ -1,5 +1,15 @@
 vi:
   title_page: "S-event"
+  navbar:
+    events: "Sự kiện"
+    topics: "Chủ đề"
+    users: "Người dùng"
+    activity: "Hoạt động"
+    profile: "Hồ sơ"
+    edit_profile: "Chỉnh sửa hồ sơ"
+    sign_out: "Đăng xuất"
+    unnamed: "Chưa đặt tên"
+    search_event: "Tìm kiếm sự kiện"
   ransack:
     asc: thứ tự tăng dần
     desc: descending

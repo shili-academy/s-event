@@ -7,7 +7,7 @@ class Admin::UsersController < Admin::AdminsController
   end
 
   def show
-    @activities = PublicActivity::Activity.where(owner: params[:id]).page(params[:page]).per(params[:per_page] || Settings.per_page)
+    @activities = PublicActivity::Activity.where(owner: params[:id]).page(params[:page]).per(params[:per_page] || Settings.per_page_10)
   end
 
   def create

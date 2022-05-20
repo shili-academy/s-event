@@ -7,28 +7,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to "Dashboard", root_path, class:"nav-link active", "aria-current": "page" %>
+          <%= link_to "User Dashboard", root_path, class:"nav-link active fw-bold", "aria-current": "page" %>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Account
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><%= link_to "Profile", user_path(current_user), class: "dropdown-item" %></li>
-            <li><%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %></li>
-            <li><%= link_to "Admin", admin_root_path, class: "dropdown-item" if current_user.admin? %></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><%= link_to "Tiếng việt", {locale: :vi}, {class: "dropdown-item"} %></li>
-            <li><%= link_to "English", {locale: :en}, {class: "dropdown-item"} %></li>
-            <li><%= link_to "Sign out", signout_path, method: :delete, class: "dropdown-item" %></li>
-          </ul>
-        </li>
+        <li><%= link_to "Admin Dashboard", admin_root_path, class: "nav-link" if current_user.admin? %></li>
+        <%= render "layouts/dropdown" %>
       </ul>
-      <%= search_form_for @q, url: root_path, class: "d-flex" do |f| %>
-        <%= f.search_field :name_or_description_cont, class: "form-control me-2",
-          placeholder: "Search your event" %>
-        <%= f.submit "Search", class: "btn btn-outline-success",
-          placeholder: "Id"  %>
+      <%= search_form_for @q, url: root_path,
+        class: "d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" do |f| %>
+        <div class="input-group">
+          <%= f.search_field :name_or_description_cont, class: "form-control bg-light border-0 small",
+            placeholder: t("navbar.search_event") %>
+          <%= button_tag(type: :submit, class: 'btn btn-primary') do %>
+            <i class="fas fa-search fa-sm"></i>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
