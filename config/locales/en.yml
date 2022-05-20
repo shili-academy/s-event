@@ -1,5 +1,15 @@
 en:
   title_page: "S-event"
+  navbar:
+    events: "Events"
+    topics: "Topics"
+    users: "Users"
+    activity: "Activity"
+    profile: "Profile"
+    edit_profile: "Edit profile"
+    sign_out: "Sign out"
+    unnamed: "Unnamed"
+    search_event: "Search for events"
   ransack:
     asc: ascending
     desc: descending
@@ -10,11 +20,6 @@ en:
       end: ends with
       gt: greater than
       lt: less than
-    models:
-      person: Passanger
-    attributes:
-      person:
-        name: Full Name
-      article:
-        title: Article Title
-        body: Main Content
+      eq: equal
+      lteq: less than or equal to
+    or: "or"
